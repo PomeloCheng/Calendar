@@ -16,10 +16,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pOA-LL-osE" customClass="FSCalendar">
-                                <rect key="frame" x="16" y="103" width="361" height="300"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pOA-LL-osE" customClass="FSCalendar">
+                                <rect key="frame" x="0.0" y="103" width="393" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="SB9-BH-b3q"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="j9T-Lo-k0u"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="ohb-WG-REn"/>
@@ -36,9 +38,20 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pOA-LL-osE" secondAttribute="trailing" id="9cd-0I-dBR"/>
+                            <constraint firstItem="pOA-LL-osE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="PxU-Hg-7Zr"/>
+                            <constraint firstItem="pOA-LL-osE" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="qKO-4b-wVK"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="123" id="SwJ-ni-pr5"/>
+                    <navigationItem key="navigationItem" title="123" id="SwJ-ni-pr5">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="calendar" catalog="system" id="drD-Cv-FkL">
+                            <connections>
+                                <segue destination="TYG-Fr-iFp" kind="presentation" id="Shq-O4-PLx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="calendarView" destination="pOA-LL-osE" id="oa2-s9-4Mp"/>
                     </connections>
@@ -46,6 +59,64 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1038.9312977099237" y="-2.1126760563380285"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="gVx-UH-cix">
+            <objects>
+                <viewController id="TYG-Fr-iFp" customClass="FSCViewController" customModule="testCVcalendar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6zl-ke-Kpf">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="CW1-hc-Swi" customClass="FSCalendar">
+                                <rect key="frame" x="0.0" y="56" width="393" height="786"/>
+                                <viewLayoutGuide key="safeArea" id="1hE-8y-Lup"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="firstWeekday">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="weekdayHeight">
+                                        <real key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="dataSource" destination="TYG-Fr-iFp" id="x8O-fe-ukn"/>
+                                    <outlet property="delegate" destination="TYG-Fr-iFp" id="cz9-Ul-R5n"/>
+                                </connections>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GnM-u0-DAt">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                                <items>
+                                    <navigationItem id="znf-i0-jxR">
+                                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="sgM-5f-QGV">
+                                            <connections>
+                                                <action selector="dismiss:" destination="TYG-Fr-iFp" id="EQR-bi-pRC"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="MoX-xj-JmE"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="CW1-hc-Swi" firstAttribute="top" secondItem="GnM-u0-DAt" secondAttribute="bottom" id="FR0-fO-8Y0"/>
+                            <constraint firstItem="GnM-u0-DAt" firstAttribute="leading" secondItem="MoX-xj-JmE" secondAttribute="leading" id="dfw-Z9-eQu"/>
+                            <constraint firstItem="MoX-xj-JmE" firstAttribute="trailing" secondItem="CW1-hc-Swi" secondAttribute="trailing" id="g7W-vK-TqM"/>
+                            <constraint firstItem="GnM-u0-DAt" firstAttribute="trailing" secondItem="MoX-xj-JmE" secondAttribute="trailing" id="i8G-Ku-BJ6"/>
+                            <constraint firstItem="GnM-u0-DAt" firstAttribute="top" secondItem="MoX-xj-JmE" secondAttribute="top" id="lxA-ZK-dah"/>
+                            <constraint firstItem="MoX-xj-JmE" firstAttribute="bottom" secondItem="CW1-hc-Swi" secondAttribute="bottom" id="rc6-DX-BQw"/>
+                            <constraint firstItem="CW1-hc-Swi" firstAttribute="leading" secondItem="MoX-xj-JmE" secondAttribute="leading" id="ycl-pr-c1f"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bigCalendar" destination="CW1-hc-Swi" id="nAm-DT-YLw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vup-Xe-NKG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2081.679389312977" y="16.901408450704228"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eSg-Hb-Ljm">
@@ -55,6 +126,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tB8-LP-m3T">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -67,6 +141,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="calendar" catalog="system" width="128" height="107"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

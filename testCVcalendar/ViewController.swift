@@ -7,6 +7,9 @@
 
 import UIKit
 import FSCalendar
+import MKRingProgressView
+
+var configindex : Int?
 
 class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate, UIGestureRecognizerDelegate, CalendarManagerDelegate {
     
@@ -60,4 +63,3 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     }
 }
     
-

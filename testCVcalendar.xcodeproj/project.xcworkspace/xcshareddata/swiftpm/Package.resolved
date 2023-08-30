@@ -8,6 +8,15 @@
         "revision" : "0fbdec5172fccb90f707472eeaea4ffe095278f6",
         "version" : "2.8.4"
       }
+    },
+    {
+      "identity" : "mkringprogressview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/maxkonovalov/MKRingProgressView",
+      "state" : {
+        "revision" : "660888aab1d2ab0ed7eb9eb53caec12af4955fa7",
+        "version" : "2.3.0"
+      }
     }
   ],
   "version" : 2

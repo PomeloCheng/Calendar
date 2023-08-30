@@ -15,6 +15,9 @@
 		144E57C42A9703BD00F43C1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 144E57C22A9703BD00F43C1C /* LaunchScreen.storyboard */; };
 		144E57D02A97087600F43C1C /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 144E57CF2A97087600F43C1C /* FSCalendar */; };
 		144E57D22A98B4BB00F43C1C /* calendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144E57D12A98B4BB00F43C1C /* calendarManager.swift */; };
+		144E57D62A99F3A000F43C1C /* FSCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144E57D52A99F3A000F43C1C /* FSCViewController.swift */; };
+		144E58122A9DE41300F43C1C /* CustomCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144E58112A9DE41300F43C1C /* CustomCalendarCell.swift */; };
+		144E58152A9DE51400F43C1C /* MKRingProgressView in Frameworks */ = {isa = PBXBuildFile; productRef = 144E58142A9DE51400F43C1C /* MKRingProgressView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +30,9 @@
 		144E57C32A9703BD00F43C1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		144E57C52A9703BD00F43C1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		144E57D12A98B4BB00F43C1C /* calendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = calendarManager.swift; sourceTree = "<group>"; };
+		144E57D52A99F3A000F43C1C /* FSCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSCViewController.swift; sourceTree = "<group>"; };
+		144E57D72A99FA9D00F43C1C /* testCVcalendar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = testCVcalendar.entitlements; sourceTree = "<group>"; };
+		144E58112A9DE41300F43C1C /* CustomCalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalendarCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				144E58152A9DE51400F43C1C /* MKRingProgressView in Frameworks */,
 				144E57D02A97087600F43C1C /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -60,6 +67,7 @@
 		144E57B62A9703BB00F43C1C /* testCVcalendar */ = {
 			isa = PBXGroup;
 			children = (
+				144E57D72A99FA9D00F43C1C /* testCVcalendar.entitlements */,
 				144E57B72A9703BB00F43C1C /* AppDelegate.swift */,
 				144E57B92A9703BB00F43C1C /* SceneDelegate.swift */,
 				144E57BB2A9703BB00F43C1C /* ViewController.swift */,
@@ -68,6 +76,8 @@
 				144E57C22A9703BD00F43C1C /* LaunchScreen.storyboard */,
 				144E57D12A98B4BB00F43C1C /* calendarManager.swift */,
 				144E57C52A9703BD00F43C1C /* Info.plist */,
+				144E57D52A99F3A000F43C1C /* FSCViewController.swift */,
+				144E58112A9DE41300F43C1C /* CustomCalendarCell.swift */,
 			);
 			path = testCVcalendar;
 			sourceTree = "<group>";
@@ -90,6 +100,7 @@
 			name = testCVcalendar;
 			packageProductDependencies = (
 				144E57CF2A97087600F43C1C /* FSCalendar */,
+				144E58142A9DE51400F43C1C /* MKRingProgressView */,
 			);
 			productName = testCVcalendar;
 			productReference = 144E57B42A9703BB00F43C1C /* testCVcalendar.app */;
@@ -121,6 +132,7 @@
 			mainGroup = 144E57AB2A9703BB00F43C1C;
 			packageReferences = (
 				144E57CE2A97087600F43C1C /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				144E58132A9DE51400F43C1C /* XCRemoteSwiftPackageReference "MKRingProgressView" */,
 			);
 			productRefGroup = 144E57B52A9703BB00F43C1C /* Products */;
 			projectDirPath = "";
@@ -152,6 +164,8 @@
 				144E57BC2A9703BB00F43C1C /* ViewController.swift in Sources */,
 				144E57D22A98B4BB00F43C1C /* calendarManager.swift in Sources */,
 				144E57B82A9703BB00F43C1C /* AppDelegate.swift in Sources */,
+				144E57D62A99F3A000F43C1C /* FSCViewController.swift in Sources */,
+				144E58122A9DE41300F43C1C /* CustomCalendarCell.swift in Sources */,
 				144E57BA2A9703BB00F43C1C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,11 +311,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = testCVcalendar/testCVcalendar.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6A82K36Y4N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = testCVcalendar/Info.plist;
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "使用您的健康紀錄";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -325,11 +341,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = testCVcalendar/testCVcalendar.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6A82K36Y4N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = testCVcalendar/Info.plist;
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "使用您的健康紀錄";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -380,6 +398,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		144E58132A9DE51400F43C1C /* XCRemoteSwiftPackageReference "MKRingProgressView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maxkonovalov/MKRingProgressView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -387,6 +413,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 144E57CE2A97087600F43C1C /* XCRemoteSwiftPackageReference "FSCalendar" */;
 			productName = FSCalendar;
+		};
+		144E58142A9DE51400F43C1C /* MKRingProgressView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 144E58132A9DE51400F43C1C /* XCRemoteSwiftPackageReference "MKRingProgressView" */;
+			productName = MKRingProgressView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
