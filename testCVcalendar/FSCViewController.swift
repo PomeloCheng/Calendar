@@ -10,23 +10,8 @@ import FSCalendar
 import MKRingProgressView
 class FSCViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     @IBOutlet weak var monthLabel: UILabel!
-    
-    
-    
-    @IBOutlet weak var SunLabel: UILabel!
-    @IBOutlet weak var monLabel: UILabel!
-    @IBOutlet weak var TueLabel: UILabel!
-    @IBOutlet weak var WenLabel: UILabel!
-    @IBOutlet weak var ThuLabel: UILabel!
-    @IBOutlet weak var FriLabel: UILabel!
-    @IBOutlet weak var SatLabel: UILabel!
-    
-    @IBOutlet weak var bigCalendar: FSCalendar!
-    
-    override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
 
-        }
+    @IBOutlet weak var bigCalendar: FSCalendar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,17 +26,18 @@ class FSCViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSou
         bigCalendar.scrollDirection = .vertical
         bigCalendar.firstWeekday = 2
         bigCalendar.appearance.headerDateFormat = "M月"
-        bigCalendar.appearance.headerTitleFont = .boldSystemFont(ofSize: 18)
+        bigCalendar.appearance.headerTitleFont = .boldSystemFont(ofSize: 24)
         
         bigCalendar.appearance.headerSeparatorColor = .clear
         
-       
+        let headerX = self.view.bounds.width
+        bigCalendar.appearance.headerTitleOffset = CGPoint(x: headerX / 3 + 36, y: 0)
         bigCalendar.pagingEnabled = false
         bigCalendar.placeholderType = .none
         bigCalendar.clipsToBounds = false
         // Do any additional setup after loading the view.
         bigCalendar.register(CustomCalendarCell.self, forCellReuseIdentifier: "CustomCalendarCell")
-        bigCalendar.appearance.headerTitleAlignment = .left
+        
         
         
     }
@@ -90,6 +76,7 @@ class FSCViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSou
          // Pass the selected object to the new view controller.
          }
          */
+    
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
             let currentPage = calendar.currentPage
             let dateFormatter = DateFormatter()
@@ -106,45 +93,8 @@ class FSCViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSou
             dateFormatter.dateFormat = "M月"
             return dateFormatter.string(from: date)
         }
-    
-    func updateHeaderTitleOffset(for date: Date) {
-        let dayLabels: [UILabel] = [
-            monLabel, ThuLabel, WenLabel,
-            ThuLabel, FriLabel, SatLabel, SunLabel
-        ]
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(identifier: "GMT")!
-        var components = calendar.dateComponents([.year, .month], from: date)
-        components.day = 1
-        let firstDayOfMonth = calendar.date(from: components)!
-        
-        var weekday = calendar.component(.weekday, from: firstDayOfMonth) - 2
-        
-        if weekday < 0  {
-            weekday = 6 // 假設 weekday 介於 1 到 7 之間，如果不是則返回
-        }
-        
-        let labelIndex = weekday // 因為陣列索引從 0 開始，所以要減 1
-        let xOffset = dayLabels[labelIndex].frame.origin.x + dayLabels[labelIndex].frame.size.width / 2 - 4
-        DispatchQueue.main.async {
-                    self.bigCalendar.appearance.headerTitleOffset = CGPoint(x: xOffset, y: 0)
-                }
-    }
- 
-    func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
-           if monthPosition == .current {
-               updateHeaderTitleOffset(for: date)
-           }
-       }
+
 }
 
 
-extension Date {
-    func startOfMonth() -> Date {
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(identifier: "GMT")!
-        var components = calendar.dateComponents([.year, .month], from: self)
-        components.day = 1
-        return calendar.date(from: components)!
-    }
-}
+

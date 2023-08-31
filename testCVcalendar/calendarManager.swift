@@ -27,7 +27,8 @@ class calendarManager:NSObject {
     func setConfig(){
         FSCalendar.locale = .init(identifier: "zh-tw")
         FSCalendar.appearance.caseOptions = .weekdayUsesSingleUpperCase
-        FSCalendar.scope = .week
+        
+        print(FSCalendar.rowHeight)
         FSCalendar.firstWeekday = 2
         FSCalendar.weekdayHeight = 40
         FSCalendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 0) // Hide the title
@@ -136,9 +137,6 @@ class calendarManager:NSObject {
         }
     }
     
-    
-    
-    
     func calendarCurrentPageDidChange() {
         
             if let selectedWeekdayLabel = selectedWeekdayLabel {
@@ -164,7 +162,6 @@ extension calendarManager: FSCalendarDataSource, FSCalendarDelegate {
         configindex = 0
         let cell = calendar.dequeueReusableCell(withIdentifier: "CustomCalendarCell", for: date, at: position) as! CustomCalendarCell
         
-        
         return cell
     }
     
@@ -175,4 +172,6 @@ extension calendarManager: FSCalendarDataSource, FSCalendarDelegate {
         customView.layer.opacity = 1
         }
     }
+    
+    
 }
