@@ -26,7 +26,7 @@ class CustomCalendarCell: FSCalendarCell {
         customView.startColor = UIColor(red: 0, green: 190/255, blue: 164/255, alpha: 1)
         customView.endColor = UIColor(red: 0, green: 190/255, blue: 164/255, alpha: 1)
         customView.gradientImageScale = 0.5
-        customView.ringWidth = 6
+        customView.ringWidth = 5.5
         customView.progress = 0.0
         customView.shadowOpacity = 0.0
         
@@ -44,10 +44,12 @@ class CustomCalendarCell: FSCalendarCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         if configindex == 1 {
-            
+            if let calendar = self.calendar {
+                        calendar.calendarWeekdayView.isHidden = true
+                    }
             
             let titleHeight: CGFloat = self.bounds.size.height * 4.1 / 5
-            var diameter: CGFloat = min(self.bounds.size.height * 5.2 / 25, self.bounds.size.width)
+            var diameter: CGFloat = min(self.bounds.size.height * 5.2 / 10, self.bounds.size.width)
             diameter = diameter > FSCalendarStandardCellDiameter ? (diameter - (diameter-FSCalendarStandardCellDiameter) * 0.5) : diameter
             shapeLayer.frame = CGRect(x: (bounds.size.width - diameter) / 2,
                                       y: (titleHeight - diameter) / 2,
@@ -56,8 +58,11 @@ class CustomCalendarCell: FSCalendarCell {
             let path = UIBezierPath(roundedRect: shapeLayer.bounds, cornerRadius: shapeLayer.bounds.width * 0.5 * appearance.borderRadius).cgPath
             if shapeLayer.path != path {
                 shapeLayer.path = path
+                
             }
+            
         }
+        
         
         
         
@@ -69,7 +74,10 @@ class CustomCalendarCell: FSCalendarCell {
                 
                 // Set the frame for customView
                 customView.frame = CGRect(x: customViewX, y: customViewY, width: customViewSize.width, height: customViewSize.height)
+        
     }
+    
+    
     
         
 }
