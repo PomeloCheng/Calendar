@@ -20,6 +20,8 @@ class calendarManager:NSObject {
     var todayDate = Date() // 保存今天的日期
     
     weak var delegate: CalendarManagerDelegate?
+    let healthManager = HealthManager()
+    
     
     static let share = calendarManager()
     private override init() {}
@@ -81,7 +83,7 @@ class calendarManager:NSObject {
     }
     
     func resetSelectedState() {
-        selectedWeekdayLabel?.textColor = .blue // 還原為初始顏色
+        selectedWeekdayLabel?.textColor = .black // 還原為初始顏色
         
 
             // 移除圓圈的 UIView
@@ -192,14 +194,46 @@ extension calendarManager: FSCalendarDataSource, FSCalendarDelegate {
         configindex = 0
         let cell = calendar.dequeueReusableCell(withIdentifier: "CustomCalendarCell", for: date, at: position) as! CustomCalendarCell
         
+        // 获取当前年份
+        let currentYear = Calendar.current.component(.year, from: Date())
+            
+        // 获取日期的年份
+        let dateYear = Calendar.current.component(.year, from: date)
+            
+        // 仅在当前年份内更新数据
+        if dateYear == currentYear {
+            
+            healthManager.requestAuthorization { success, error in
+                if success {
+                    
+                    
+                    DispatchQueue.main.async {
+                        //更新畫面的程式
+                        self.configureCustomView(cell.customView, for: date)
+                        cell.updateProgress(date: date)
+                    }
+                    // 這裡是你想要執行的程式碼，例如更新進度、顯示訊息等
+                    
+                    // 在此處可以開始使用 HealthKit 數據
+                } else {
+                    print("HealthKit 授權失敗：\(error?.localizedDescription ?? "Unknown Error")")
+                }
+            }
+        }
+        
         return cell
     }
     
     func configureCustomView(_ customView: RingProgressView, for date: Date) {
         if date > Date() {
-        customView.layer.opacity = 0.2
+            
+            //更新畫面的程式
+            customView.layer.opacity = 0.2
+            
         } else {
-        customView.layer.opacity = 1
+
+            //更新畫面的程式
+            customView.layer.opacity = 1
         }
     }
     

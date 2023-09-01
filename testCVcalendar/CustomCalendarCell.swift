@@ -11,6 +11,8 @@ import HealthKit
 
 class CustomCalendarCell: FSCalendarCell {
     var customView: RingProgressView!
+    var checkImageView: UIImageView!
+    let healthManager = HealthManager()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,13 +26,20 @@ class CustomCalendarCell: FSCalendarCell {
             
         customView = RingProgressView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
         customView.startColor = darkGreen
-        customView.endColor = lightGreen
-        customView.gradientImageScale = 0.5
-        customView.ringWidth = 5
+        customView.endColor = darkGreen
+        customView.gradientImageScale = 0.3
+        customView.ringWidth = 6
         customView.progress = 0.0
         customView.shadowOpacity = 0.0
         
         self.contentView.addSubview(customView)
+        
+        checkImageView = UIImageView(frame: CGRect(x: customView.bounds.width / 2 - 6.5, y: customView.bounds.height / 2 - 5.5, width: 13, height: 11))
+        checkImageView.image = UIImage(named: "checkMark.png")
+        
+        checkImageView.contentMode = .scaleAspectFit
+        checkImageView.isHidden = true
+        customView.addSubview(checkImageView)
         
         
     }
@@ -82,5 +91,38 @@ class CustomCalendarCell: FSCalendarCell {
         
     }
     
+    func updateProgress(date:Date) {
+        if date > Date() {
+            DispatchQueue.main.async {
+                self.checkImageView.isHidden = true
+                self.customView.progress = 0
+            }
+        }
+        
+        healthManager.readStepCount(for: date) { progress in
+            guard let progress = progress else {
+                
+                return
+            }
+            
+            if progress >= 1.0 {
+                
+                DispatchQueue.main.async {
+                    //更新畫面的程式
+                    self.customView.progress = 1.0
+                    self.checkImageView.isHidden = false
+                }
+                
+            } else {
+                
+                DispatchQueue.main.async {
+                    //更新畫面的程式
+                    self.checkImageView.isHidden = true
+                    self.customView.progress = progress
+                    
+                }
+            }
+        }
+    }
         
 }

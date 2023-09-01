@@ -10,6 +10,8 @@
 		141D99812AA0D2DF00F15A5B /* recordTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D99802AA0D2DF00F15A5B /* recordTableCell.swift */; };
 		141D99832AA0D3D900F15A5B /* smallRecordContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D99822AA0D3D900F15A5B /* smallRecordContentVC.swift */; };
 		141D99852AA1828E00F15A5B /* setBigCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D99842AA1828E00F15A5B /* setBigCalendar.swift */; };
+		141D99872AA1949C00F15A5B /* healthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D99862AA1949B00F15A5B /* healthManager.swift */; };
+		141D998B2AA1ADB400F15A5B /* checkMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 141D998A2AA1ADB400F15A5B /* checkMark.png */; };
 		144E57B82A9703BB00F43C1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144E57B72A9703BB00F43C1C /* AppDelegate.swift */; };
 		144E57BA2A9703BB00F43C1C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144E57B92A9703BB00F43C1C /* SceneDelegate.swift */; };
 		144E57BC2A9703BB00F43C1C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144E57BB2A9703BB00F43C1C /* ViewController.swift */; };
@@ -27,6 +29,8 @@
 		141D99802AA0D2DF00F15A5B /* recordTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recordTableCell.swift; sourceTree = "<group>"; };
 		141D99822AA0D3D900F15A5B /* smallRecordContentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = smallRecordContentVC.swift; sourceTree = "<group>"; };
 		141D99842AA1828E00F15A5B /* setBigCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setBigCalendar.swift; sourceTree = "<group>"; };
+		141D99862AA1949B00F15A5B /* healthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = healthManager.swift; sourceTree = "<group>"; };
+		141D998A2AA1ADB400F15A5B /* checkMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkMark.png; sourceTree = "<group>"; };
 		144E57B42A9703BB00F43C1C /* testCVcalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testCVcalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		144E57B72A9703BB00F43C1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		144E57B92A9703BB00F43C1C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +91,8 @@
 				144E58112A9DE41300F43C1C /* CustomCalendarCell.swift */,
 				144E57D52A99F3A000F43C1C /* FSCViewController.swift */,
 				141D99842AA1828E00F15A5B /* setBigCalendar.swift */,
+				141D99862AA1949B00F15A5B /* healthManager.swift */,
+				141D998A2AA1ADB400F15A5B /* checkMark.png */,
 			);
 			path = testCVcalendar;
 			sourceTree = "<group>";
@@ -158,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				144E57C42A9703BD00F43C1C /* LaunchScreen.storyboard in Resources */,
+				141D998B2AA1ADB400F15A5B /* checkMark.png in Resources */,
 				144E57C12A9703BD00F43C1C /* Assets.xcassets in Resources */,
 				144E57BF2A9703BB00F43C1C /* Main.storyboard in Resources */,
 			);
@@ -179,6 +186,7 @@
 				144E57D62A99F3A000F43C1C /* FSCViewController.swift in Sources */,
 				144E58122A9DE41300F43C1C /* CustomCalendarCell.swift in Sources */,
 				144E57BA2A9703BB00F43C1C /* SceneDelegate.swift in Sources */,
+				141D99872AA1949C00F15A5B /* healthManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,7 +337,8 @@
 				DEVELOPMENT_TEAM = 6A82K36Y4N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = testCVcalendar/Info.plist;
-				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "使用您的健康紀錄";
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "將使用您的健康紀錄做整合顯示";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "將使用您的健康紀錄做整合顯示";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -359,7 +368,8 @@
 				DEVELOPMENT_TEAM = 6A82K36Y4N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = testCVcalendar/Info.plist;
-				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "使用您的健康紀錄";
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "將使用您的健康紀錄做整合顯示";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "將使用您的健康紀錄做整合顯示";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

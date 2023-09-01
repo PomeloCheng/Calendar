@@ -13,6 +13,7 @@ import MKRingProgressView
 
 extension FSCViewController {
     
+    
     func bigCalendarconfig() {
         bigCalendar.delegate = self
         bigCalendar.dataSource = self
@@ -22,7 +23,7 @@ extension FSCViewController {
         bigCalendar.appearance.headerDateFormat = "M月"
         bigCalendar.headerHeight = 80
         bigCalendar.appearance.headerTitleFont = .boldSystemFont(ofSize: 24)
-        
+        bigCalendar.appearance.headerTitleColor = darkGreen
         bigCalendar.appearance.headerSeparatorColor = .clear
         
         let headerX = self.view.bounds.width
@@ -39,7 +40,22 @@ extension FSCViewController {
         configindex = 1
         let cell = calendar.dequeueReusableCell(withIdentifier: "CustomCalendarCell", for: date, at: position) as! CustomCalendarCell
         
-        configureCustomView(cell.customView, for: date)
+        healthManager.requestAuthorization { success, error in
+            if success {
+                
+                
+                DispatchQueue.main.async {
+                        //更新畫面的程式
+                        self.configureCustomView(cell.customView, for: date)
+                        cell.updateProgress(date: date)
+                    }
+                // 這裡是你想要執行的程式碼，例如更新進度、顯示訊息等
+                
+                // 在此處可以開始使用 HealthKit 數據
+            } else {
+                print("HealthKit 授權失敗：\(error?.localizedDescription ?? "Unknown Error")")
+            }
+        }
         
         
         return cell

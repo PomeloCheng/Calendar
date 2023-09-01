@@ -8,6 +8,7 @@
 import UIKit
 import FSCalendar
 import MKRingProgressView
+import HealthKit
 
 var configindex : Int?
 var darkGreen = UIColor(red: 0, green: 138/255, blue: 163/255, alpha: 1)
@@ -22,6 +23,7 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     var todayDate: Date = Date() // 保存今天的日期
     @IBOutlet weak var calendarViewHeight: NSLayoutConstraint!
     var tapGesture: UITapGestureRecognizer?
+    let healthManager = HealthManager()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -66,8 +68,8 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         
         calendarView.scope = .week
         ringView.startColor = darkGreen
-        ringView.endColor = lightGreen
-        ringView.gradientImageScale = 0.5
+        ringView.endColor = darkGreen
+        ringView.gradientImageScale = 0.3
         ringView.ringWidth = 25
         ringView.progress = 0.0
         ringView.shadowOpacity = 0.0
@@ -89,7 +91,34 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         dateFormatter.dateFormat = "Y 年 M 月 d 日"
         let dateString = dateFormatter.string(from: date)
         navigationItem.title = dateString
+        updateProgress(date: date)
     }
+    
+    func updateProgress(date:Date) {
+        healthManager.readStepCount(for: date) { progress in
+            guard let progress = progress else {
+                return
+            }
+            
+            if progress >= 1.0 {
+                DispatchQueue.main.async {
+                    //更新畫面的程式
+                    UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: {
+                        self.ringView.progress = 1.0
+                    })
+                }
+            } else {
+                
+                DispatchQueue.main.async {
+                    //更新畫面的程式
+                    UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: {
+                        self.ringView.progress = progress
+                    })
+                }
+            }
+        }
+    }
+    
 
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
