@@ -9,6 +9,8 @@ import Foundation
 import FSCalendar
 import MKRingProgressView
 
+
+
 extension FSCViewController {
     
     func bigCalendarconfig() {
@@ -24,12 +26,13 @@ extension FSCViewController {
         bigCalendar.appearance.headerSeparatorColor = .clear
         
         let headerX = self.view.bounds.width
-        bigCalendar.appearance.headerTitleOffset = CGPoint(x: headerX / 3 + 36, y: 0)
+        bigCalendar.appearance.headerTitleOffset = CGPoint(x: headerX / 3 + 28, y: 0)
         bigCalendar.pagingEnabled = false
         bigCalendar.placeholderType = .none
         
         // Do any additional setup after loading the view.
         bigCalendar.register(CustomCalendarCell.self, forCellReuseIdentifier: "CustomCalendarCell")
+        
     }
     //設定CalendarCell
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
@@ -73,13 +76,25 @@ extension FSCViewController {
         var components = DateComponents()
         components.month = +1
         let currentPage = bigCalendar.currentPage
-    guard let previousMonth = Calendar.current.date(byAdding: components, to: currentPage) else {
-        return
-    }
+        guard let nextMonth = Calendar.current.date(byAdding: components, to: currentPage) else {
+            return
+        }
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy年M月"
-        let currentMonthString = dateFormatter.string(from: previousMonth)
+        let currentMonthString = dateFormatter.string(from: nextMonth)
         monthLabel.text = currentMonthString
     }
+    
+    func setPerviousMonth(){
+        var components = DateComponents()
+        components.month = -1
+        let currentPage = bigCalendar.currentPage
+        guard let previousMonth = Calendar.current.date(byAdding: components, to: currentPage) else {
+        return
+    }
+        bigCalendar.setCurrentPage(previousMonth, animated: true)
+        
+    }
+    
     
 }

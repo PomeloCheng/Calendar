@@ -37,6 +37,7 @@ class calendarManager:NSObject {
         FSCalendar.delegate = self
         FSCalendar.dataSource = self
         FSCalendar.appearance.todayColor = .clear
+        FSCalendar.appearance.weekdayTextColor = .black
     }
     
     

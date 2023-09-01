@@ -16,10 +16,16 @@ class FSCViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSou
     
     var VC : ViewController?
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        setPerviousMonth()
         setHeaderTitle()
         bigCalendarconfig()
+        
     }
     
     

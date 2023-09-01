@@ -10,6 +10,8 @@ import FSCalendar
 import MKRingProgressView
 
 var configindex : Int?
+var darkGreen = UIColor(red: 0, green: 138/255, blue: 163/255, alpha: 1)
+var lightGreen = UIColor(red: 232/255, green: 246/255, blue: 245/255, alpha: 1)
 
 class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate, UIGestureRecognizerDelegate, CalendarManagerDelegate {
     
@@ -63,8 +65,8 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         view.addGestureRecognizer(tapGesture!)
         
         calendarView.scope = .week
-        ringView.startColor = UIColor(red: 0, green: 190/255, blue: 164/255, alpha: 1)
-        ringView.endColor = UIColor(red: 0, green: 190/255, blue: 164/255, alpha: 1)
+        ringView.startColor = darkGreen
+        ringView.endColor = lightGreen
         ringView.gradientImageScale = 0.5
         ringView.ringWidth = 25
         ringView.progress = 0.0
