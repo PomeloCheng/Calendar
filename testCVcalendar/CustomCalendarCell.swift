@@ -26,7 +26,7 @@ class CustomCalendarCell: FSCalendarCell {
         customView.startColor = UIColor(red: 0, green: 190/255, blue: 164/255, alpha: 1)
         customView.endColor = UIColor(red: 0, green: 190/255, blue: 164/255, alpha: 1)
         customView.gradientImageScale = 0.5
-        customView.ringWidth = 6
+        customView.ringWidth = 5
         customView.progress = 0.0
         customView.shadowOpacity = 0.0
         

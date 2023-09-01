@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		141D99812AA0D2DF00F15A5B /* recordTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D99802AA0D2DF00F15A5B /* recordTableCell.swift */; };
+		141D99832AA0D3D900F15A5B /* smallRecordContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D99822AA0D3D900F15A5B /* smallRecordContentVC.swift */; };
+		141D99852AA1828E00F15A5B /* setBigCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141D99842AA1828E00F15A5B /* setBigCalendar.swift */; };
 		144E57B82A9703BB00F43C1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144E57B72A9703BB00F43C1C /* AppDelegate.swift */; };
 		144E57BA2A9703BB00F43C1C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144E57B92A9703BB00F43C1C /* SceneDelegate.swift */; };
 		144E57BC2A9703BB00F43C1C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144E57BB2A9703BB00F43C1C /* ViewController.swift */; };
@@ -21,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		141D99802AA0D2DF00F15A5B /* recordTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recordTableCell.swift; sourceTree = "<group>"; };
+		141D99822AA0D3D900F15A5B /* smallRecordContentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = smallRecordContentVC.swift; sourceTree = "<group>"; };
+		141D99842AA1828E00F15A5B /* setBigCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setBigCalendar.swift; sourceTree = "<group>"; };
 		144E57B42A9703BB00F43C1C /* testCVcalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testCVcalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		144E57B72A9703BB00F43C1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		144E57B92A9703BB00F43C1C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,8 +82,11 @@
 				144E57C22A9703BD00F43C1C /* LaunchScreen.storyboard */,
 				144E57D12A98B4BB00F43C1C /* calendarManager.swift */,
 				144E57C52A9703BD00F43C1C /* Info.plist */,
-				144E57D52A99F3A000F43C1C /* FSCViewController.swift */,
+				141D99802AA0D2DF00F15A5B /* recordTableCell.swift */,
+				141D99822AA0D3D900F15A5B /* smallRecordContentVC.swift */,
 				144E58112A9DE41300F43C1C /* CustomCalendarCell.swift */,
+				144E57D52A99F3A000F43C1C /* FSCViewController.swift */,
+				141D99842AA1828E00F15A5B /* setBigCalendar.swift */,
 			);
 			path = testCVcalendar;
 			sourceTree = "<group>";
@@ -162,8 +171,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				144E57BC2A9703BB00F43C1C /* ViewController.swift in Sources */,
+				141D99832AA0D3D900F15A5B /* smallRecordContentVC.swift in Sources */,
 				144E57D22A98B4BB00F43C1C /* calendarManager.swift in Sources */,
+				141D99812AA0D2DF00F15A5B /* recordTableCell.swift in Sources */,
 				144E57B82A9703BB00F43C1C /* AppDelegate.swift in Sources */,
+				141D99852AA1828E00F15A5B /* setBigCalendar.swift in Sources */,
 				144E57D62A99F3A000F43C1C /* FSCViewController.swift in Sources */,
 				144E58122A9DE41300F43C1C /* CustomCalendarCell.swift in Sources */,
 				144E57BA2A9703BB00F43C1C /* SceneDelegate.swift in Sources */,

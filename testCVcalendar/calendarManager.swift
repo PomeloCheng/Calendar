@@ -17,7 +17,8 @@ class calendarManager:NSObject {
     var FSCalendar : FSCalendar!
     var selectedWeekdayLabel: UILabel?
     var circleView: UIView?
-    var todayDate: Date = Date() // 保存今天的日期
+    var todayDate = Date() // 保存今天的日期
+    
     weak var delegate: CalendarManagerDelegate?
     
     static let share = calendarManager()
@@ -28,7 +29,6 @@ class calendarManager:NSObject {
         FSCalendar.locale = .init(identifier: "zh-tw")
         FSCalendar.appearance.caseOptions = .weekdayUsesSingleUpperCase
         
-        print(FSCalendar.rowHeight)
         FSCalendar.firstWeekday = 2
         FSCalendar.weekdayHeight = 40
         FSCalendar.appearance.headerTitleFont = UIFont.systemFont(ofSize: 0) // Hide the title
@@ -137,16 +137,45 @@ class calendarManager:NSObject {
         }
     }
     
-    func calendarCurrentPageDidChange() {
+    func dateToWeekday(_ date: Date) {
+        var calendar = Calendar.current
+        calendar.firstWeekday = 2
+        let weekdayComponents = calendar.component(.weekday, from: date) - 2
+        let weekdayLabels = FSCalendar.calendarWeekdayView.weekdayLabels
         
-            if let selectedWeekdayLabel = selectedWeekdayLabel {
-                // 使用選取的星期標籤索引計算日期
-                if let weekdayIndex = FSCalendar.calendarWeekdayView.weekdayLabels.firstIndex(of: selectedWeekdayLabel) {
-                    let selectedDate = calculateSelectedDate(weekdayIndex: weekdayIndex)
-                    delegate?.updateDateTitle(selectedDate) // 通知代理
+        for (index, weekdayLabel) in weekdayLabels.enumerated() {
+            
+            let labelFrame = weekdayLabel.frame
+            if index == weekdayComponents {
+                
+                resetSelectedState()
+                // 更新選取的標籤外觀
+                selectedWeekdayLabel = weekdayLabels[index]
+                
+                selectedWeekdayLabel?.textColor = .white // 選取的顏色
+
+                if Calendar.current.isDateInToday(date) {
+                    setSelection(labelFrame: labelFrame, weekdayLabel: weekdayLabel, color: .red)
+                } else {
+                    setSelection(labelFrame: labelFrame, weekdayLabel: weekdayLabel, color: .gray)
                 }
             }
+            
         }
+    }
+    
+    func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+        if let selectedWeekdayLabel = selectedWeekdayLabel {
+            // 使用選取的星期標籤索引計算日期
+            if let weekdayIndex = FSCalendar.calendarWeekdayView.weekdayLabels.firstIndex(of: selectedWeekdayLabel) {
+                let selectedDate = calculateSelectedDate(weekdayIndex: weekdayIndex)
+                
+                dateToWeekday(selectedDate)
+                delegate?.updateDateTitle(selectedDate) // 通知代理
+            }
+        }
+    }
+    
 
 }
 
