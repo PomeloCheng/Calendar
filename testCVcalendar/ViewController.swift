@@ -17,6 +17,10 @@ var lightGreen = UIColor(red: 232/255, green: 246/255, blue: 245/255, alpha: 1)
 class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate, UIGestureRecognizerDelegate, CalendarManagerDelegate {
     
     
+    @IBOutlet weak var activeTimeLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var caroLabel: UILabel!
+    @IBOutlet weak var stepLabel: UILabel!
     @IBOutlet weak var recordView: UIView!
     var isFirstTime = true
     @IBOutlet weak var calendarView: FSCalendar!
@@ -38,6 +42,8 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         calendarManager.share.selectTodayWeekdayLabel()
         }
         
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -47,6 +53,7 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         calendarManager.share.selectTodayWeekdayLabel()
     }
        
+        
     }
     
     
@@ -59,6 +66,7 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     @IBOutlet weak var ringView: RingProgressView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         calendarView.delegate = self
         calendarView.dataSource = self
         
@@ -74,6 +82,8 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         ringView.progress = 0.0
         ringView.shadowOpacity = 0.0
         
+
+        
     }
 
     @IBAction func btnPressed(_ sender: Any) {
@@ -88,34 +98,57 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     
     func updateDateTitle(_ date: Date) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "Y 年 M 月 d 日"
-        let dateString = dateFormatter.string(from: date)
+            dateFormatter.dateFormat = "Y 年 M 月 d 日"
+            let dateString = dateFormatter.string(from: date)
         navigationItem.title = dateString
         updateProgress(date: date)
     }
     
+    
     func updateProgress(date:Date) {
-        healthManager.readStepCount(for: date) { progress in
-            guard let progress = progress else {
+        healthManager.readStepDistance(for: date) { distance in
+            guard let distance = distance else {
                 return
             }
             
-            if progress >= 1.0 {
-                DispatchQueue.main.async {
-                    //更新畫面的程式
-                    UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: {
-                        self.ringView.progress = 1.0
-                    })
-                }
-            } else {
-                
-                DispatchQueue.main.async {
-                    //更新畫面的程式
-                    UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: {
-                        self.ringView.progress = progress
-                    })
-                }
+            DispatchQueue.main.async {
+                self.distanceLabel.text = String(format: "%.1f 公里",distance)
             }
+            
+        }
+        
+        healthManager.readStepCount(for: date) { step in
+            guard let step = step else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.stepLabel.text = String(format: "%.0f 步",step)
+            }
+            
+        }
+        healthManager.readCalories(for: date) { calories,progress in
+            guard let progress = progress,let calories = calories else {
+                return
+            }
+            
+                DispatchQueue.main.async {
+                    //更新畫面的程式
+                    self.caroLabel.text = String(format: "%.0f 大卡",calories)
+                    
+                    if progress >= 1.0 {
+
+                        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: {
+                            self.ringView.progress = 1.0
+                        })
+                            
+                        
+                    } else {
+                        UIView.animate(withDuration: 0.2, delay: 0, options: [.curveEaseIn], animations: {
+                            self.ringView.progress = progress
+                        })
+                    }
+                }
         }
     }
     

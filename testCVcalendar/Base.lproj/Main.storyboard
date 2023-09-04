@@ -163,10 +163,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activeTimeLabel" destination="P4R-LO-4CX" id="xeE-na-Bvf"/>
                         <outlet property="calendarView" destination="pOA-LL-osE" id="oa2-s9-4Mp"/>
                         <outlet property="calendarViewHeight" destination="HVc-hc-HYS" id="wsa-vE-KTI"/>
+                        <outlet property="caroLabel" destination="qW5-LK-hA4" id="K8d-xr-9SS"/>
+                        <outlet property="distanceLabel" destination="K2z-rH-HCD" id="ODD-XG-h9z"/>
                         <outlet property="recordView" destination="hwD-1N-L0N" id="ea1-cU-R95"/>
                         <outlet property="ringView" destination="1PV-Qz-XLr" id="1iE-xX-Rfs"/>
+                        <outlet property="stepLabel" destination="qtk-aJ-NAa" id="Q4n-cO-Vv4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -348,7 +352,7 @@
             <objects>
                 <viewController id="2ir-pK-wQF" customClass="smallRecordContentVC" customModule="testCVcalendar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zRr-4g-6Fx">
-                        <rect key="frame" x="0.0" y="0.0" width="353" height="328.66666666666669"/>
+                        <rect key="frame" x="0.0" y="0.0" width="353" height="329"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="130" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="XsA-pe-F8t">
@@ -403,6 +407,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="n97-rk-5mk"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <connections>

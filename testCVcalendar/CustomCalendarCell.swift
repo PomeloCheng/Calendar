@@ -99,7 +99,7 @@ class CustomCalendarCell: FSCalendarCell {
             }
         }
         
-        healthManager.readStepCount(for: date) { progress in
+        healthManager.readCalories(for: date) { calories,progress in
             guard let progress = progress else {
                 
                 return

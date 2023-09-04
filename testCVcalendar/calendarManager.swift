@@ -40,6 +40,7 @@ class calendarManager:NSObject {
         FSCalendar.dataSource = self
         FSCalendar.appearance.todayColor = .clear
         FSCalendar.appearance.weekdayTextColor = .black
+        
     }
     
     
@@ -73,8 +74,11 @@ class calendarManager:NSObject {
     
     func selectTodayWeekdayLabel() {
         
-        
-        let weekdayIndex = Calendar.current.component(.weekday, from: todayDate) - 2 // 轉換成 0-6 的索引
+
+        var weekdayIndex = Calendar.current.component(.weekday, from: todayDate) - 2// 轉換成 0-6 的索引
+        if weekdayIndex < 0 {
+            weekdayIndex = 6
+        }
         let todayWeekdayLabel = FSCalendar.calendarWeekdayView.weekdayLabels[weekdayIndex]
         let labelFrame = todayWeekdayLabel.frame
         selectedWeekdayLabel = todayWeekdayLabel
@@ -95,7 +99,6 @@ class calendarManager:NSObject {
     func calculateSelectedDate(weekdayIndex: Int) -> Date {
         var calendar = Calendar.current
         calendar.timeZone = TimeZone(identifier: "GMT")! // 設定時區為 GMT
-        
         let currentDate = FSCalendar.currentPage
         let currentWeekday = calendar.component(.weekday, from: currentDate)
         let daysToAdd = weekdayIndex - currentWeekday + 2
@@ -112,7 +115,8 @@ class calendarManager:NSObject {
         for (index, weekdayLabel) in FSCalendar.calendarWeekdayView.weekdayLabels.enumerated() {
             
             let labelFrame = weekdayLabel.frame
-            if labelFrame.contains(tapLocation) {
+            let customViewFrame = CGRect(x: labelFrame.origin.x, y: labelFrame.maxY, width: 40, height: 40)
+            if customViewFrame.contains(tapLocation) || labelFrame.contains(tapLocation) {
                 // 在這裡處理點擊星期標籤的邏輯，切換到對應日期
                 // 例如，根據點擊的星期標籤，計算並設置日曆顯示的日期範圍
                 
@@ -174,11 +178,22 @@ class calendarManager:NSObject {
                 let selectedDate = calculateSelectedDate(weekdayIndex: weekdayIndex)
                 
                 dateToWeekday(selectedDate)
+                print("dateToWeekday:\(selectedDate)")
                 delegate?.updateDateTitle(selectedDate) // 通知代理
             }
         }
     }
     
+    func didSelectDate(_ date: Date) {
+        // 在這裡處理所選日期的邏輯，例如更新星期標籤和標題
+        // 您可以直接使用傳遞的日期而無需重新計算
+        // 例如：dateToWeekday(date)
+        // 更新日期標籤和標題
+        FSCalendar.currentPage = date
+        delegate?.updateDateTitle(date)
+        dateToWeekday(date)
+    }
+   
 
 }
 
@@ -203,23 +218,14 @@ extension calendarManager: FSCalendarDataSource, FSCalendarDelegate {
         // 仅在当前年份内更新数据
         if dateYear == currentYear {
             
-            healthManager.requestAuthorization { success, error in
-                if success {
-                    
-                    
-                    DispatchQueue.main.async {
-                        //更新畫面的程式
-                        self.configureCustomView(cell.customView, for: date)
-                        cell.updateProgress(date: date)
-                    }
-                    // 這裡是你想要執行的程式碼，例如更新進度、顯示訊息等
-                    
-                    // 在此處可以開始使用 HealthKit 數據
-                } else {
-                    print("HealthKit 授權失敗：\(error?.localizedDescription ?? "Unknown Error")")
+                DispatchQueue.main.async {
+                    self.configureCustomView(cell.customView, for: date)
+                    cell.updateProgress(date: date)
                 }
+            
             }
-        }
+        
+    
         
         return cell
     }
@@ -237,5 +243,5 @@ extension calendarManager: FSCalendarDataSource, FSCalendarDelegate {
         }
     }
     
-    
+
 }
