@@ -268,7 +268,7 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         
         if segue.identifier == "fullCalendar",
            let nextVC = segue.destination as? FSCViewController {
-            nextVC.VC = self
+            nextVC.bigCalendarVC = self
         }
         
         

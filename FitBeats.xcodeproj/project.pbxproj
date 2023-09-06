@@ -27,6 +27,10 @@
 		14C373E62AA6CB7C006A8D2E /* check.json in Resources */ = {isa = PBXBuildFile; fileRef = 14C373E52AA6CB7C006A8D2E /* check.json */; };
 		14C373E82AA6CFA0006A8D2E /* undone.json in Resources */ = {isa = PBXBuildFile; fileRef = 14C373E72AA6CFA0006A8D2E /* undone.json */; };
 		14C373EC2AA6FFDB006A8D2E /* TargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C373EB2AA6FFDB006A8D2E /* TargetViewController.swift */; };
+		14C373F62AA85D67006A8D2E /* setSportIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C373F52AA85D67006A8D2E /* setSportIcon.swift */; };
+		14C373F82AA86DB5006A8D2E /* UIWindow+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C373F72AA86DB5006A8D2E /* UIWindow+Extension.swift */; };
+		14C373FA2AA86DBE006A8D2E /* BlankCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C373F92AA86DBE006A8D2E /* BlankCover.swift */; };
+		14C373FC2AA8753D006A8D2E /* 1024_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C373FB2AA8753D006A8D2E /* 1024_logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +39,7 @@
 		141D99842AA1828E00F15A5B /* setBigCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setBigCalendar.swift; sourceTree = "<group>"; };
 		141D99862AA1949B00F15A5B /* healthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = healthManager.swift; sourceTree = "<group>"; };
 		141D998A2AA1ADB400F15A5B /* checkMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkMark.png; sourceTree = "<group>"; };
-		144E57B42A9703BB00F43C1C /* testCVcalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testCVcalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		144E57B42A9703BB00F43C1C /* FitBeats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitBeats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		144E57B72A9703BB00F43C1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		144E57B92A9703BB00F43C1C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		144E57BB2A9703BB00F43C1C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -50,6 +54,10 @@
 		14C373E52AA6CB7C006A8D2E /* check.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = check.json; sourceTree = "<group>"; };
 		14C373E72AA6CFA0006A8D2E /* undone.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = undone.json; sourceTree = "<group>"; };
 		14C373EB2AA6FFDB006A8D2E /* TargetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetViewController.swift; sourceTree = "<group>"; };
+		14C373F52AA85D67006A8D2E /* setSportIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setSportIcon.swift; sourceTree = "<group>"; };
+		14C373F72AA86DB5006A8D2E /* UIWindow+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extension.swift"; sourceTree = "<group>"; };
+		14C373F92AA86DBE006A8D2E /* BlankCover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlankCover.swift; sourceTree = "<group>"; };
+		14C373FB2AA8753D006A8D2E /* 1024_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1024_logo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +85,7 @@
 		144E57B52A9703BB00F43C1C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				144E57B42A9703BB00F43C1C /* testCVcalendar.app */,
+				144E57B42A9703BB00F43C1C /* FitBeats.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -96,14 +104,18 @@
 				144E57C22A9703BD00F43C1C /* LaunchScreen.storyboard */,
 				144E57D12A98B4BB00F43C1C /* calendarManager.swift */,
 				144E57C52A9703BD00F43C1C /* Info.plist */,
-				141D99802AA0D2DF00F15A5B /* recordTableCell.swift */,
-				141D99822AA0D3D900F15A5B /* smallRecordContentVC.swift */,
 				144E58112A9DE41300F43C1C /* CustomCalendarCell.swift */,
 				144E57D52A99F3A000F43C1C /* FSCViewController.swift */,
 				141D99842AA1828E00F15A5B /* setBigCalendar.swift */,
 				141D99862AA1949B00F15A5B /* healthManager.swift */,
 				14C373EB2AA6FFDB006A8D2E /* TargetViewController.swift */,
+				141D99822AA0D3D900F15A5B /* smallRecordContentVC.swift */,
+				141D99802AA0D2DF00F15A5B /* recordTableCell.swift */,
 				141D998A2AA1ADB400F15A5B /* checkMark.png */,
+				14C373F52AA85D67006A8D2E /* setSportIcon.swift */,
+				14C373F72AA86DB5006A8D2E /* UIWindow+Extension.swift */,
+				14C373F92AA86DBE006A8D2E /* BlankCover.swift */,
+				14C373FB2AA8753D006A8D2E /* 1024_logo.png */,
 			);
 			path = testCVcalendar;
 			sourceTree = "<group>";
@@ -111,9 +123,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		144E57B32A9703BB00F43C1C /* testCVcalendar */ = {
+		144E57B32A9703BB00F43C1C /* FitBeats */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 144E57C82A9703BD00F43C1C /* Build configuration list for PBXNativeTarget "testCVcalendar" */;
+			buildConfigurationList = 144E57C82A9703BD00F43C1C /* Build configuration list for PBXNativeTarget "FitBeats" */;
 			buildPhases = (
 				144E57B02A9703BB00F43C1C /* Sources */,
 				144E57B12A9703BB00F43C1C /* Frameworks */,
@@ -123,14 +135,14 @@
 			);
 			dependencies = (
 			);
-			name = testCVcalendar;
+			name = FitBeats;
 			packageProductDependencies = (
 				144E57CF2A97087600F43C1C /* FSCalendar */,
 				144E58142A9DE51400F43C1C /* MKRingProgressView */,
 				14C373DF2AA60F5B006A8D2E /* Lottie */,
 			);
 			productName = testCVcalendar;
-			productReference = 144E57B42A9703BB00F43C1C /* testCVcalendar.app */;
+			productReference = 144E57B42A9703BB00F43C1C /* FitBeats.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -148,7 +160,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 144E57AF2A9703BB00F43C1C /* Build configuration list for PBXProject "testCVcalendar" */;
+			buildConfigurationList = 144E57AF2A9703BB00F43C1C /* Build configuration list for PBXProject "FitBeats" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -166,7 +178,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				144E57B32A9703BB00F43C1C /* testCVcalendar */,
+				144E57B32A9703BB00F43C1C /* FitBeats */,
 			);
 		};
 /* End PBXProject section */
@@ -178,6 +190,7 @@
 			files = (
 				14C373E62AA6CB7C006A8D2E /* check.json in Resources */,
 				144E57C42A9703BD00F43C1C /* LaunchScreen.storyboard in Resources */,
+				14C373FC2AA8753D006A8D2E /* 1024_logo.png in Resources */,
 				141D998B2AA1ADB400F15A5B /* checkMark.png in Resources */,
 				144E57C12A9703BD00F43C1C /* Assets.xcassets in Resources */,
 				14C373E82AA6CFA0006A8D2E /* undone.json in Resources */,
@@ -194,7 +207,9 @@
 			files = (
 				144E57BC2A9703BB00F43C1C /* ViewController.swift in Sources */,
 				141D99832AA0D3D900F15A5B /* smallRecordContentVC.swift in Sources */,
+				14C373F62AA85D67006A8D2E /* setSportIcon.swift in Sources */,
 				144E57D22A98B4BB00F43C1C /* calendarManager.swift in Sources */,
+				14C373FA2AA86DBE006A8D2E /* BlankCover.swift in Sources */,
 				141D99812AA0D2DF00F15A5B /* recordTableCell.swift in Sources */,
 				144E57B82A9703BB00F43C1C /* AppDelegate.swift in Sources */,
 				141D99852AA1828E00F15A5B /* setBigCalendar.swift in Sources */,
@@ -203,6 +218,7 @@
 				14C373EC2AA6FFDB006A8D2E /* TargetViewController.swift in Sources */,
 				144E57BA2A9703BB00F43C1C /* SceneDelegate.swift in Sources */,
 				141D99872AA1949C00F15A5B /* healthManager.swift in Sources */,
+				14C373F82AA86DB5006A8D2E /* UIWindow+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,7 +381,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pomelo.testCVcalendar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pomelo.testFitBeatscalendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -396,7 +412,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pomelo.testCVcalendar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pomelo.testFitBeatscalendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -407,7 +423,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		144E57AF2A9703BB00F43C1C /* Build configuration list for PBXProject "testCVcalendar" */ = {
+		144E57AF2A9703BB00F43C1C /* Build configuration list for PBXProject "FitBeats" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				144E57C62A9703BD00F43C1C /* Debug */,
@@ -416,7 +432,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		144E57C82A9703BD00F43C1C /* Build configuration list for PBXNativeTarget "testCVcalendar" */ = {
+		144E57C82A9703BD00F43C1C /* Build configuration list for PBXNativeTarget "FitBeats" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				144E57C92A9703BD00F43C1C /* Debug */,

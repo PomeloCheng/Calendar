@@ -30,20 +30,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+        
+                if let mainVC = window?.visibleViewController as? ViewController {
+                    mainVC.updateDateTitle(todayDate)
+                    calendarManager.shared.FSCalendar.currentPage = todayDate
+                    
+                }
+        BlankCover.shared.dismissCover()
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
+        BlankCover.shared.showCover(window: window)
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
-        if let rootViewController = window?.rootViewController as? ViewController {
-                    // 替换 "YourViewController" 为你的实际视图控制器的类名
-            rootViewController.updateDateTitle(todayDate)
-        }
+        
+
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {

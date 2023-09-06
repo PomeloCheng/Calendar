@@ -69,7 +69,7 @@ extension FSCViewController {
     //設定點擊之後傳回日期
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         
-        VC!.updateDateTitle(date)
+        bigCalendarVC!.updateDateTitle(date)
         calendarManager.shared.didSelectDate(date)
         self.dismiss(animated: true)
     }

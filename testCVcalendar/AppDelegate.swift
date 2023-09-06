@@ -12,7 +12,7 @@ import HealthKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    let healthManager = HealthManager()
+    let healthManager = HealthManager.shared
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

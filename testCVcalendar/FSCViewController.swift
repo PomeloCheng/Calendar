@@ -14,7 +14,7 @@ class FSCViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSou
 
     @IBOutlet weak var bigCalendar: FSCalendar!
     
-    var VC : ViewController?
+    var bigCalendarVC : ViewController?
     let healthManager = HealthManager.shared
     
     override func viewWillAppear(_ animated: Bool) {

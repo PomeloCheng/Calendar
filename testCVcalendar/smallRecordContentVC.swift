@@ -31,39 +31,6 @@ class smallRecordContentVC: UIViewController, UITableViewDataSource, UITableView
     let healthManager = HealthManager.shared
     
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if !exerciseData.isEmpty {
-            return exerciseData.count
-        } else {
-            return 0
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "recordItemCell") as! recordTableCell
-        
-        
-        cell.recordItemView.layer.cornerRadius = 18
-        
-        cell.recordItemView.layer.shadowOffset = CGSize(width: 0.5, height: 0.5)
-        cell.recordItemView.layer.shadowColor = UIColor.lightGray.cgColor
-        cell.recordItemView.layer.shadowOpacity = 0.2
-        
-        
-        //
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil) // 替換 "Main" 為你的故事板名稱
-            if let targetVC = storyboard.instantiateViewController(withIdentifier: "TargetViewController") as? TargetViewController {
-                // 在這裡可以設定目標視圖控制器的屬性或傳遞數據，如果需要的話
-                // 例如：targetVC.propertyName = value
-                targetVC.indexPath = indexPath
-                // 使用導航控制器將目標視圖控制器推送到堆疊中
-                navigationController?.pushViewController(targetVC, animated: true)
-            }
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -79,5 +46,44 @@ class smallRecordContentVC: UIViewController, UITableViewDataSource, UITableView
        
         
     }
-
+    
+//MARK: tableview
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if !exerciseData.isEmpty {
+            return exerciseData.count
+        } else {
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "recordItemCell") as! recordTableCell
+        let workout = exerciseData[indexPath.row]
+        
+        let image = setCellIcon(for: workout)
+        cell.recordIcon.image = image
+        cell.recordIcon.contentMode = .scaleAspectFit
+        
+        cell.recordItemView.layer.cornerRadius = 18
+        
+        cell.recordItemView.layer.shadowOffset = CGSize(width: 0.5, height: 0.5)
+        cell.recordItemView.layer.shadowColor = UIColor.lightGray.cgColor
+        cell.recordItemView.layer.shadowOpacity = 0.2
+        
+        
+        //
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil) // 替換 "Main" 為你的故事板名稱
+        if let targetVC = storyboard.instantiateViewController(withIdentifier: "TargetViewController") as? TargetViewController {
+            // 在這裡可以設定目標視圖控制器的屬性或傳遞數據，如果需要的話
+            // 例如：targetVC.propertyName = value
+            targetVC.indexPath = indexPath
+            // 使用導航控制器將目標視圖控制器推送到堆疊中
+            navigationController?.pushViewController(targetVC, animated: true)
+        }
+    }
+    
 }
