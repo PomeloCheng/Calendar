@@ -23,6 +23,10 @@
 		144E57D62A99F3A000F43C1C /* FSCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144E57D52A99F3A000F43C1C /* FSCViewController.swift */; };
 		144E58122A9DE41300F43C1C /* CustomCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144E58112A9DE41300F43C1C /* CustomCalendarCell.swift */; };
 		144E58152A9DE51400F43C1C /* MKRingProgressView in Frameworks */ = {isa = PBXBuildFile; productRef = 144E58142A9DE51400F43C1C /* MKRingProgressView */; };
+		14C373E02AA60F5B006A8D2E /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 14C373DF2AA60F5B006A8D2E /* Lottie */; };
+		14C373E62AA6CB7C006A8D2E /* check.json in Resources */ = {isa = PBXBuildFile; fileRef = 14C373E52AA6CB7C006A8D2E /* check.json */; };
+		14C373E82AA6CFA0006A8D2E /* undone.json in Resources */ = {isa = PBXBuildFile; fileRef = 14C373E72AA6CFA0006A8D2E /* undone.json */; };
+		14C373EC2AA6FFDB006A8D2E /* TargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C373EB2AA6FFDB006A8D2E /* TargetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +47,9 @@
 		144E57D52A99F3A000F43C1C /* FSCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSCViewController.swift; sourceTree = "<group>"; };
 		144E57D72A99FA9D00F43C1C /* testCVcalendar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = testCVcalendar.entitlements; sourceTree = "<group>"; };
 		144E58112A9DE41300F43C1C /* CustomCalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCalendarCell.swift; sourceTree = "<group>"; };
+		14C373E52AA6CB7C006A8D2E /* check.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = check.json; sourceTree = "<group>"; };
+		14C373E72AA6CFA0006A8D2E /* undone.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = undone.json; sourceTree = "<group>"; };
+		14C373EB2AA6FFDB006A8D2E /* TargetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +59,7 @@
 			files = (
 				144E58152A9DE51400F43C1C /* MKRingProgressView in Frameworks */,
 				144E57D02A97087600F43C1C /* FSCalendar in Frameworks */,
+				14C373E02AA60F5B006A8D2E /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,7 +90,9 @@
 				144E57B92A9703BB00F43C1C /* SceneDelegate.swift */,
 				144E57BB2A9703BB00F43C1C /* ViewController.swift */,
 				144E57BD2A9703BB00F43C1C /* Main.storyboard */,
+				14C373E52AA6CB7C006A8D2E /* check.json */,
 				144E57C02A9703BD00F43C1C /* Assets.xcassets */,
+				14C373E72AA6CFA0006A8D2E /* undone.json */,
 				144E57C22A9703BD00F43C1C /* LaunchScreen.storyboard */,
 				144E57D12A98B4BB00F43C1C /* calendarManager.swift */,
 				144E57C52A9703BD00F43C1C /* Info.plist */,
@@ -92,6 +102,7 @@
 				144E57D52A99F3A000F43C1C /* FSCViewController.swift */,
 				141D99842AA1828E00F15A5B /* setBigCalendar.swift */,
 				141D99862AA1949B00F15A5B /* healthManager.swift */,
+				14C373EB2AA6FFDB006A8D2E /* TargetViewController.swift */,
 				141D998A2AA1ADB400F15A5B /* checkMark.png */,
 			);
 			path = testCVcalendar;
@@ -116,6 +127,7 @@
 			packageProductDependencies = (
 				144E57CF2A97087600F43C1C /* FSCalendar */,
 				144E58142A9DE51400F43C1C /* MKRingProgressView */,
+				14C373DF2AA60F5B006A8D2E /* Lottie */,
 			);
 			productName = testCVcalendar;
 			productReference = 144E57B42A9703BB00F43C1C /* testCVcalendar.app */;
@@ -148,6 +160,7 @@
 			packageReferences = (
 				144E57CE2A97087600F43C1C /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				144E58132A9DE51400F43C1C /* XCRemoteSwiftPackageReference "MKRingProgressView" */,
+				14C373DE2AA60F5B006A8D2E /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 144E57B52A9703BB00F43C1C /* Products */;
 			projectDirPath = "";
@@ -163,9 +176,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14C373E62AA6CB7C006A8D2E /* check.json in Resources */,
 				144E57C42A9703BD00F43C1C /* LaunchScreen.storyboard in Resources */,
 				141D998B2AA1ADB400F15A5B /* checkMark.png in Resources */,
 				144E57C12A9703BD00F43C1C /* Assets.xcassets in Resources */,
+				14C373E82AA6CFA0006A8D2E /* undone.json in Resources */,
 				144E57BF2A9703BB00F43C1C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -185,6 +200,7 @@
 				141D99852AA1828E00F15A5B /* setBigCalendar.swift in Sources */,
 				144E57D62A99F3A000F43C1C /* FSCViewController.swift in Sources */,
 				144E58122A9DE41300F43C1C /* CustomCalendarCell.swift in Sources */,
+				14C373EC2AA6FFDB006A8D2E /* TargetViewController.swift in Sources */,
 				144E57BA2A9703BB00F43C1C /* SceneDelegate.swift in Sources */,
 				141D99872AA1949C00F15A5B /* healthManager.swift in Sources */,
 			);
@@ -428,6 +444,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		14C373DE2AA60F5B006A8D2E /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -440,6 +464,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 144E58132A9DE51400F43C1C /* XCRemoteSwiftPackageReference "MKRingProgressView" */;
 			productName = MKRingProgressView;
+		};
+		14C373DF2AA60F5B006A8D2E /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 14C373DE2AA60F5B006A8D2E /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

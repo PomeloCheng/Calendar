@@ -17,13 +17,14 @@ class calendarManager:NSObject {
     var FSCalendar : FSCalendar!
     var selectedWeekdayLabel: UILabel?
     var circleView: UIView?
-    var todayDate = Date() // 保存今天的日期
-    
-    weak var delegate: CalendarManagerDelegate?
-    let healthManager = HealthManager()
     
     
-    static let share = calendarManager()
+    weak var delegateMainVC: CalendarManagerDelegate?
+    weak var delegateTableVC: CalendarManagerDelegate?
+    let healthManager = HealthManager.shared
+    
+    
+    static let shared = calendarManager()
     private override init() {}
     
     
@@ -40,6 +41,7 @@ class calendarManager:NSObject {
         FSCalendar.dataSource = self
         FSCalendar.appearance.todayColor = .clear
         FSCalendar.appearance.weekdayTextColor = .black
+        FSCalendar.allowsSelection = false
         
     }
     
@@ -83,7 +85,7 @@ class calendarManager:NSObject {
         let labelFrame = todayWeekdayLabel.frame
         selectedWeekdayLabel = todayWeekdayLabel
         todayWeekdayLabel.textColor = .white
-        setSelection(labelFrame: labelFrame, weekdayLabel: todayWeekdayLabel, color: .red)
+        setSelection(labelFrame: labelFrame, weekdayLabel: todayWeekdayLabel, color: redColor)
     }
     
     func resetSelectedState() {
@@ -130,10 +132,11 @@ class calendarManager:NSObject {
                 
                 // 更新日期標籤
                 let selectedDate = calculateSelectedDate(weekdayIndex: index)
-                delegate?.updateDateTitle(selectedDate) // 通知代理
+                delegateMainVC?.updateDateTitle(selectedDate) // 通知代理
+                delegateTableVC?.updateDateTitle(selectedDate)
                 
                 if Calendar.current.isDateInToday(selectedDate) {
-                    setSelection(labelFrame: labelFrame, weekdayLabel: weekdayLabel, color: .red)
+                    setSelection(labelFrame: labelFrame, weekdayLabel: weekdayLabel, color: redColor)
                 } else {
                     setSelection(labelFrame: labelFrame, weekdayLabel: weekdayLabel, color: .gray)
                 }
@@ -162,7 +165,7 @@ class calendarManager:NSObject {
                 selectedWeekdayLabel?.textColor = .white // 選取的顏色
 
                 if Calendar.current.isDateInToday(date) {
-                    setSelection(labelFrame: labelFrame, weekdayLabel: weekdayLabel, color: .red)
+                    setSelection(labelFrame: labelFrame, weekdayLabel: weekdayLabel, color: redColor)
                 } else {
                     setSelection(labelFrame: labelFrame, weekdayLabel: weekdayLabel, color: .gray)
                 }
@@ -178,8 +181,9 @@ class calendarManager:NSObject {
                 let selectedDate = calculateSelectedDate(weekdayIndex: weekdayIndex)
                 
                 dateToWeekday(selectedDate)
-                print("dateToWeekday:\(selectedDate)")
-                delegate?.updateDateTitle(selectedDate) // 通知代理
+                
+                delegateMainVC?.updateDateTitle(selectedDate) // 通知代理
+                delegateTableVC?.updateDateTitle(selectedDate)
             }
         }
     }
@@ -190,7 +194,8 @@ class calendarManager:NSObject {
         // 例如：dateToWeekday(date)
         // 更新日期標籤和標題
         FSCalendar.currentPage = date
-        delegate?.updateDateTitle(date)
+        delegateMainVC?.updateDateTitle(date)
+        delegateTableVC?.updateDateTitle(date)
         dateToWeekday(date)
     }
    
@@ -208,40 +213,11 @@ extension calendarManager: FSCalendarDataSource, FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
         configindex = 0
         let cell = calendar.dequeueReusableCell(withIdentifier: "CustomCalendarCell", for: date, at: position) as! CustomCalendarCell
-        
-        // 获取当前年份
-        let currentYear = Calendar.current.component(.year, from: Date())
-            
-        // 获取日期的年份
-        let dateYear = Calendar.current.component(.year, from: date)
-            
-        // 仅在当前年份内更新数据
-        if dateYear == currentYear {
-            
-                DispatchQueue.main.async {
-                    self.configureCustomView(cell.customView, for: date)
-                    cell.updateProgress(date: date)
-                }
-            
-            }
-        
-    
+        cell.updateProgress(date: date)
         
         return cell
     }
     
-    func configureCustomView(_ customView: RingProgressView, for date: Date) {
-        if date > Date() {
-            
-            //更新畫面的程式
-            customView.layer.opacity = 0.2
-            
-        } else {
-
-            //更新畫面的程式
-            customView.layer.opacity = 1
-        }
-    }
-    
+   
 
 }

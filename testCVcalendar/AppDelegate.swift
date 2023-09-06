@@ -8,6 +8,7 @@
 import UIKit
 import HealthKit
 
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -22,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                     
                     if success {
+                        
                         print("HealthKit authorization granted.")
                     } else {
                         print("HealthKit authorization denied.")

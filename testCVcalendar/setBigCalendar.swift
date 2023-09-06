@@ -24,6 +24,7 @@ extension FSCViewController {
         bigCalendar.headerHeight = 80
         bigCalendar.appearance.headerTitleFont = .boldSystemFont(ofSize: 24)
         bigCalendar.appearance.headerTitleColor = darkGreen
+        bigCalendar.appearance.todayColor = redColor
         bigCalendar.appearance.headerSeparatorColor = .clear
         
         let headerX = self.view.bounds.width
@@ -69,7 +70,7 @@ extension FSCViewController {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         
         VC!.updateDateTitle(date)
-        calendarManager.share.didSelectDate(date)
+        calendarManager.shared.didSelectDate(date)
         self.dismiss(animated: true)
     }
     

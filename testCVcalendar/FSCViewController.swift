@@ -15,7 +15,7 @@ class FSCViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSou
     @IBOutlet weak var bigCalendar: FSCalendar!
     
     var VC : ViewController?
-    let healthManager = HealthManager()
+    let healthManager = HealthManager.shared
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -26,8 +26,7 @@ class FSCViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSou
         setPerviousMonth()
         setHeaderTitle()
         bigCalendarconfig()
-        
-    }
+        }
     
     
     @IBAction func cancelBtnPressed(_ sender: Any) {

@@ -10,12 +10,14 @@ import HealthKit
 import UIKit
 
 class HealthManager {
-    let healthStore: HKHealthStore
+    
     var stepType: HKQuantityType
     var activeEnergyType: HKQuantityType
     var stepDistance: HKQuantityType
     var activeTime: HKQuantityType
     
+    static let shared = HealthManager()
+    private let healthStore = HKHealthStore()
     
     
     init() {
@@ -23,8 +25,7 @@ class HealthManager {
                 fatalError("Your device can't use HealthKit")
             }
             
-            healthStore = HKHealthStore()
-        
+            
             if let stepType = HKObjectType.quantityType(forIdentifier: .stepCount),
                let activeEnergyType = HKObjectType.quantityType(forIdentifier: .activeEnergyBurned),
                let stepDistance = HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning),
@@ -45,7 +46,7 @@ class HealthManager {
     func requestAuthorization(completion: @escaping (Bool, Error?) -> Void) {
         
         let typesToShare: Set<HKSampleType> = []
-        let typesToRead: Set<HKObjectType> = [stepType,activeEnergyType,.activitySummaryType(),stepDistance,activeTime]
+        let typesToRead: Set<HKObjectType> = [stepType,activeEnergyType,.activitySummaryType(),stepDistance,activeTime,.workoutType()]
         
         healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { success, error in
             completion(success, error)
@@ -60,6 +61,24 @@ class HealthManager {
         return predicvate
     }
     
+    func readWorkData(for date: Date, completion: @escaping ([HKWorkout]?) -> Void) {
+        let predicate = setPredicate(for: date)
+        let workoutType = HKObjectType.workoutType()
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: true)
+        let query = HKSampleQuery(sampleType: workoutType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { (query, samples, error) in
+            
+            if let error = error {
+                print("search workData fail: \(error)")
+            }
+            
+            if let workoutSamples = samples as? [HKWorkout] {
+                completion(workoutSamples)
+            }
+            
+        }
+        healthStore.execute(query)
+    }
+    
     func readStepCount(for date: Date, completion: @escaping (Double?) -> Void) {
         let predicate = setPredicate(for: date)
 
@@ -68,6 +87,7 @@ class HealthManager {
                 if let error = error {
                     print("Error fetching step count: \(error.localizedDescription)")
                     completion(nil)
+                    return
                 }
                 return
             }
@@ -86,24 +106,35 @@ class HealthManager {
         let caloriesSummary = HKActivitySummaryQuery(predicate: predicate) { query, summaries, error in
             if let error = error {
                 print("Error fetching active energy burned goal: \(error.localizedDescription)")
+                completion(nil,nil)
                 return
             }
             
-            guard let summaries = summaries,
-                let summary = summaries.first else {
+            guard let summaries = summaries else{
                 return
             }
             
-            let activeEnergyBurned = summary.activeEnergyBurned
-            let calories = activeEnergyBurned.doubleValue(for: HKUnit.kilocalorie())
-            let activeEnergyBurnedGoal = summary.activeEnergyBurnedGoal
-            let goalValue = activeEnergyBurnedGoal.doubleValue(for: HKUnit.kilocalorie())
+            if summaries.isEmpty {
+                print("caloriesSummary is empty")
+                completion(nil,nil)
+               } else {
+                   guard let summary = summaries.first else {
+                       return
+                   }
+                   
+                   let activeEnergyBurned = summary.activeEnergyBurned
+                   let calories = activeEnergyBurned.doubleValue(for: HKUnit.kilocalorie())
+                   let activeEnergyBurnedGoal = summary.activeEnergyBurnedGoal
+                   let goalValue = activeEnergyBurnedGoal.doubleValue(for: HKUnit.kilocalorie())
+                   
+                   let progress = calories / goalValue
+                   
+                   
+                   //print("日期：\(dateString), 卡路里總和：\(calories), 目標： \(goalValue)")
+                   completion(calories,progress)
+               }
             
-            let progress = calories / goalValue
             
-            
-            //print("日期：\(dateString), 卡路里總和：\(calories), 目標： \(goalValue)")
-            completion(calories,progress)
             
         }
             healthStore.execute(caloriesSummary)
@@ -136,8 +167,22 @@ class HealthManager {
     }
     
     func readActiveTime(for date: Date, completion: @escaping (Double?) -> Void){
-        
+        let predicate = setPredicate(for: date)
+
+        let stepQuery = setQuery(type: activeTime, predicate: predicate) { query, result, error in
+            guard let result = result, let sum = result.sumQuantity() else {
+                if let error = error {
+                    print("Error fetching step count: \(error.localizedDescription)")
+                    completion(nil)
+                }
+                return
+            }
+            let activeTime = sum.doubleValue(for: HKUnit.minute())
+            completion(activeTime)
+        }
+        healthStore.execute(stepQuery)
     }
+    
         
     }
 

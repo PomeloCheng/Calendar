@@ -12,7 +12,7 @@ import HealthKit
 class CustomCalendarCell: FSCalendarCell {
     var customView: RingProgressView!
     var checkImageView: UIImageView!
-    let healthManager = HealthManager()
+    let healthManager = HealthManager.shared
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -93,15 +93,29 @@ class CustomCalendarCell: FSCalendarCell {
     
     func updateProgress(date:Date) {
         if date > Date() {
+            self.customView.layer.opacity = 0.2
             DispatchQueue.main.async {
                 self.checkImageView.isHidden = true
                 self.customView.progress = 0
             }
-        }
+        } else {
+            self.customView.layer.opacity = 1
+            setHealthData(date)
+            }
+    }
+    
+    
+    func setHealthData(_ date:Date) {
+        
         
         healthManager.readCalories(for: date) { calories,progress in
             guard let progress = progress else {
-                
+                DispatchQueue.main.async {
+                        //更新畫面的程式
+                    self.customView.progress = 0
+                    self.checkImageView.isHidden = true
+                }
+               
                 return
             }
             
