@@ -12,6 +12,7 @@ import MKRingProgressView
 protocol CalendarManagerDelegate: AnyObject {
     func updateDateTitle(_ date: Date)
 }
+var todayDate = Date() // 保存今天的日期
 
 class calendarManager:NSObject {
     var FSCalendar : FSCalendar!
@@ -75,7 +76,7 @@ class calendarManager:NSObject {
     }
     
     func selectTodayWeekdayLabel() {
-        
+        resetSelectedState()
 
         var weekdayIndex = Calendar.current.component(.weekday, from: todayDate) - 2// 轉換成 0-6 的索引
         if weekdayIndex < 0 {

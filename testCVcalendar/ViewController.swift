@@ -17,7 +17,7 @@ var configindex: Int?
 var darkGreen = UIColor(red: 0, green: 190/255, blue: 164/255, alpha: 1)
 var lightGreen = UIColor(red: 232/255, green: 246/255, blue: 245/255, alpha: 1)
 var redColor = UIColor(red: 239/255, green: 115/255, blue: 110/255, alpha: 1)
-var todayDate = Date() // 保存今天的日期
+
 
 
 class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate, UIGestureRecognizerDelegate, CalendarManagerDelegate, UINavigationControllerDelegate {
@@ -33,13 +33,15 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     @IBOutlet weak var recordView: UIView!
     var isFirstTime = true
     var isFirstRead = true
+    var leaveVC = false
+    var isNil = false
     @IBOutlet weak var calendarView: FSCalendar!
     
     var selectData: Date?
     @IBOutlet weak var calendarViewHeight: NSLayoutConstraint!
     var tapGesture: UITapGestureRecognizer?
     let healthManager = HealthManager.shared
-    
+    var selectStep: Double?
     
     
     @IBOutlet weak var healthTitleLabel: UILabel!
@@ -52,15 +54,13 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
             calendarManager.shared.delegateMainVC = self
             
             updateDateTitle(todayDate)
-//            if !isFirstTime {
-//                calendarManager.shared.selectTodayWeekdayLabel()
-//            }
-//
+
             isFirstRead = false // 设置为 false，以确保不再执行此部分代码
         } else {
             if let selectData = selectData {
                 calendarManager.shared.dateToWeekday(selectData)
             }
+            
         }
         
         
@@ -77,13 +77,13 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         calendarManager.shared.selectTodayWeekdayLabel()
     }
        
-        
     }
     
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         calendarManager.shared.resetSelectedState()
+        leaveVC = true
     }
     
     
@@ -112,6 +112,11 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         healthTitleLabel.isHidden = true
         
         
+        NotificationCenter.default.addObserver(self, selector: #selector(handleAuthorizationSuccess), name: Notification.Name("HealthKitAuthorizationSuccess"), object: nil)
+        if leaveVC {
+            calendarView.reloadData()
+            leaveVC = false
+        }
     }
 
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
@@ -172,6 +177,9 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     func setHealthData(_ date: Date){
         healthManager.readStepDistance(for: date) { activeTime in
             guard let activeTime = activeTime else {
+                DispatchQueue.main.async {
+                    self.activeTimeLabel.text = " -- 分鐘"
+                }
                 return
             }
             
@@ -182,6 +190,9 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         }
         healthManager.readStepDistance(for: date) { distance in
             guard let distance = distance else {
+                DispatchQueue.main.async {
+                    self.distanceLabel.text = " -- 公里"
+                }
                 return
             }
             
@@ -193,8 +204,19 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         
         healthManager.readStepCount(for: date) { step in
             guard let step = step else {
+                DispatchQueue.main.async {
+                    self.stepLabel.text = " -- 步"
+                    self.checkAnimation.isHidden = true
+                    self.cancelAnimation.isHidden = true
+                    self.isGoalLabel.isHidden = true
+                    self.ringView.layer.opacity = 0.2
+                    if self.isNil {
+                        self.showHealthKitAuthorizationAlert()
+                    }
+                }
                 return
             }
+            self.selectStep = step
             
             DispatchQueue.main.async {
                 self.stepLabel.text = String(format: "%.0f 步",step)
@@ -212,6 +234,7 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
                     self.cancelAnimation.isHidden = false
                     self.ringView.progress = 0
                     self.ringView.layer.opacity = 0.2
+                    self.caroLabel.text = " -- 大卡"
                 }
                 
 
@@ -279,7 +302,23 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         return true
     }
     
-    
+    @objc func handleAuthorizationSuccess() {
+        
+        DispatchQueue.main.async {
+            //更新畫面的程式
+            self.updateDateTitle(todayDate)
+            self.calendarView.reloadData()
+            if self.selectStep == nil {
+                self.showHealthKitAuthorizationAlert()
+                
+            }
+            self.isNil = true
+        }
+        
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("HealthKitAuthorizationSuccess"), object: nil)
+        
+    }
+
     
 }
     

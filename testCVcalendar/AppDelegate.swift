@@ -16,22 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
         healthManager.requestAuthorization { success, error in
-                    if let error = error {
-                        print("HealthKit authorization error: \(error.localizedDescription)")
-                    }
-                    
-                    if success {
-                        
-                        print("HealthKit authorization granted.")
-                    } else {
-                        print("HealthKit authorization denied.")
-                    }
-                }
-
-                
+            if let error = error {
+                print("HealthKit authorization error: \(error.localizedDescription)")
+            }
             
+            if success {
+                NotificationCenter.default.post(name: Notification.Name("HealthKitAuthorizationSuccess"), object: nil)
+                print("HealthKit authorization granted.")
+            }
+        }
+        
         return true
     }
 
