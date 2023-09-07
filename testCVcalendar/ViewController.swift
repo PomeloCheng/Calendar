@@ -31,10 +31,10 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     @IBOutlet weak var caroLabel: UILabel!
     @IBOutlet weak var stepLabel: UILabel!
     @IBOutlet weak var recordView: UIView!
-    var isFirstTime = true
-    var isFirstRead = true
-    var leaveVC = false
-    var isNil = false
+    var isFirstTime = true //第一次的顯示todayLabel
+    var isFirstRead = true //第一次進來設定月曆
+    //var leaveVC = false //判斷是否離開VC 回來時reloadData
+    var isNil = false //判斷資料是否為nil彈出警告 從授權那邊更改成true之後都判斷
     @IBOutlet weak var calendarView: FSCalendar!
     
     var selectData: Date?
@@ -83,7 +83,7 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         calendarManager.shared.resetSelectedState()
-        leaveVC = true
+        //leaveVC = true
     }
     
     
@@ -113,10 +113,10 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleAuthorizationSuccess), name: Notification.Name("HealthKitAuthorizationSuccess"), object: nil)
-        if leaveVC {
-            calendarView.reloadData()
-            leaveVC = false
-        }
+//        if leaveVC {
+//            calendarView.reloadData()
+//            leaveVC = false
+//        }
     }
 
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
@@ -308,11 +308,8 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
             //更新畫面的程式
             self.updateDateTitle(todayDate)
             self.calendarView.reloadData()
-            if self.selectStep == nil {
-                self.showHealthKitAuthorizationAlert()
-                
-            }
             self.isNil = true
+            
         }
         
         NotificationCenter.default.removeObserver(self, name: Notification.Name("HealthKitAuthorizationSuccess"), object: nil)

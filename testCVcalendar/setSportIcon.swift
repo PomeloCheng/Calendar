@@ -11,37 +11,44 @@ import UIKit
 extension smallRecordContentVC {
     
     //MARK: 判斷運動類型
-    func setCellIcon(for workout: HKWorkout) -> UIImage? {
+    func setCellIcon(for workout: HKWorkout) ->  (UIImage?, String) {
         let activityType = workout.workoutActivityType
         let isIndoorWorkout = isIndoorWorkout(workout: workout)
         var symbolName: String
+        var title: String
         
         switch activityType {
-        case .americanFootball:
-            symbolName = "figure.american.football"
         case .archery:
+            title = "射箭"
             symbolName = "figure.archery"
-        case .australianFootball:
-            symbolName = "figure.australian.football"
         case .badminton:
+            title = "羽毛球"
             symbolName = "figure.badminton"
         case .barre:
+            title = "芭蕾"
             symbolName = "figure.barre"
         case .baseball:
+            title = "棒球"
             symbolName = "figure.baseball"
         case .basketball:
+            title = "籃球"
             symbolName = "figure.basketball"
         case .bowling:
+            title = "保齡球"
             symbolName = "figure.bowling"
         case .boxing:
+            title = "拳擊"
             symbolName = "figure.boxing"
         case .climbing:
+            title = "攀岩"
             symbolName = "figure.climbing"
         case .cooldown:
             symbolName = "figure.cooldown"
         case .coreTraining:
+            title = "核心訓練"
             symbolName = "figure.core.training"
         case .cricket:
+            title = "板球"
             symbolName = "figure.cricket"
         case .crossCountrySkiing:
             symbolName = "figure.skiing.crosscountry"
@@ -176,7 +183,9 @@ extension smallRecordContentVC {
             symbolName = "figure.stand"
         }
         
-       return UIImage(systemName: symbolName)
+        let image = UIImage(systemName: symbolName)
+        
+       return (image, title)
     }
 
     func isIndoorWorkout(workout: HKWorkout) -> Bool {
@@ -185,6 +194,22 @@ extension smallRecordContentVC {
             return indoorValue
         }
         return false // 默认为室外活动
+    }
+    
+    func formatTimeInterval(_ timeInterval: TimeInterval) -> String {
+        let seconds = Int(timeInterval) % 60
+        let minutes = (Int(timeInterval) / 60) % 60
+        let hours = (Int(timeInterval) / 3600)
+        
+        if hours <= 0 {
+            return String(format: "%02d 分 %02d 秒", minutes, seconds)
+        } else if minutes <= 0 {
+            return String(format: "%02d 秒",  seconds)
+        } else {
+            return String(format: "%02d 時 %02d 分%02d 秒", hours, minutes, seconds)
+        }
+        
+        
     }
 
     

@@ -9,6 +9,10 @@ import UIKit
 
 class recordTableCell: UITableViewCell {
 
+    @IBOutlet weak var calorieLabel: UILabel!
+    @IBOutlet weak var location: UILabel!
+    @IBOutlet weak var during: UILabel!
+    @IBOutlet weak var sportNameLabel: UILabel!
     @IBOutlet weak var recordIcon: UIImageView!
     @IBOutlet weak var recordItemView: UIView!
     

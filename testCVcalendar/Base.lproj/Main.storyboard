@@ -11,7 +11,7 @@
         <!--123-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="testCVcalendar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FitBeats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -80,8 +80,8 @@
                                 <color key="textColor" red="0.0" green="0.54117647058823526" blue="0.63921568627450975" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="累積活動時間" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tIg-ef-Lat">
-                                <rect key="frame" x="24" y="295.33333333333331" width="80" height="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目標卡路里" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tIg-ef-Lat">
+                                <rect key="frame" x="24" y="295.33333333333331" width="67" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -89,7 +89,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="150 分鐘" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4R-LO-4CX">
                                 <rect key="frame" x="24" y="319.33333333333331" width="58" height="17"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.54117647059999996" blue="0.63921568630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" systemColor="systemPinkColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="步數" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vej-FF-SnC">
@@ -216,7 +216,7 @@
         <!--View Controller-->
         <scene sceneID="gVx-UH-cix">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="TYG-Fr-iFp" customClass="FSCViewController" customModule="testCVcalendar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="TYG-Fr-iFp" customClass="FSCViewController" customModule="FitBeats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6zl-ke-Kpf">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -386,7 +386,7 @@
         <!--Target View Controller-->
         <scene sceneID="Mtw-PS-a5a">
             <objects>
-                <viewController storyboardIdentifier="TargetViewController" id="gF4-0g-Rjh" customClass="TargetViewController" customModule="testCVcalendar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TargetViewController" id="gF4-0g-Rjh" customClass="TargetViewController" customModule="FitBeats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kgu-bq-l6v">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -401,9 +401,9 @@
         <!--Small Record ContentVC-->
         <scene sceneID="S4i-zj-14f">
             <objects>
-                <viewController storyboardIdentifier="smallRecordContentVC" id="2ir-pK-wQF" customClass="smallRecordContentVC" customModule="testCVcalendar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="smallRecordContentVC" id="2ir-pK-wQF" customClass="smallRecordContentVC" customModule="FitBeats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zRr-4g-6Fx">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="329"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="328.66666666666669"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="130" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="XsA-pe-F8t">
@@ -411,7 +411,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="recordItemCell" id="40s-vP-pig" customClass="recordTableCell" customModule="testCVcalendar" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="recordItemCell" id="40s-vP-pig" customClass="recordTableCell" customModule="FitBeats" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="40s-vP-pig" id="mDO-ZT-2wZ">
@@ -429,13 +429,53 @@
                                                                 <constraint firstAttribute="height" constant="50" id="dmI-9P-BLf"/>
                                                             </constraints>
                                                         </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sport Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJT-hS-Dqa">
+                                                            <rect key="frame" x="82" y="28" width="92.333333333333314" height="19.333333333333329"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="運動總長" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLT-4l-JDZ">
+                                                            <rect key="frame" x="82" y="51.333333333333329" width="53.333333333333343" height="15.666666666666671"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="位置" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RcR-7s-mhg">
+                                                            <rect key="frame" x="175.33333333333334" y="51.333333333333329" width="26.666666666666657" height="15.666666666666671"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="aah-E6-4ZP">
+                                                            <rect key="frame" x="159.33333333333334" y="50.333333333333329" width="12" height="18.333333333333343"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="12" id="VnG-J2-NTS"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="熱量消耗" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdy-5B-GfG">
+                                                            <rect key="frame" x="279.66666666666669" y="40.333333333333336" width="65.333333333333314" height="19.333333333333336"/>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="100" id="5fa-Ud-sRG"/>
+                                                        <constraint firstItem="RcR-7s-mhg" firstAttribute="leading" secondItem="aah-E6-4ZP" secondAttribute="trailing" constant="4" id="7Ph-4s-h9b"/>
+                                                        <constraint firstItem="oLT-4l-JDZ" firstAttribute="top" secondItem="FJT-hS-Dqa" secondAttribute="bottom" constant="4" id="QfO-Jz-buC"/>
+                                                        <constraint firstItem="RcR-7s-mhg" firstAttribute="centerY" secondItem="aah-E6-4ZP" secondAttribute="centerY" id="SRk-hY-vPi"/>
                                                         <constraint firstItem="fS1-Kl-7i7" firstAttribute="leading" secondItem="Wms-tB-Ami" secondAttribute="leading" constant="24" id="Y2y-QY-6cI"/>
+                                                        <constraint firstItem="FJT-hS-Dqa" firstAttribute="leading" secondItem="fS1-Kl-7i7" secondAttribute="trailing" constant="8" id="a7s-ZC-7Nh"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Cdy-5B-GfG" secondAttribute="trailing" constant="8" id="eew-bN-G7O"/>
                                                         <constraint firstItem="fS1-Kl-7i7" firstAttribute="leading" secondItem="Wms-tB-Ami" secondAttribute="leading" constant="24" id="i6Q-n8-NxS"/>
+                                                        <constraint firstItem="Cdy-5B-GfG" firstAttribute="centerY" secondItem="Wms-tB-Ami" secondAttribute="centerY" id="kBF-Nw-9qw"/>
+                                                        <constraint firstItem="aah-E6-4ZP" firstAttribute="leading" secondItem="oLT-4l-JDZ" secondAttribute="trailing" constant="24" id="kkM-kp-67d"/>
                                                         <constraint firstItem="fS1-Kl-7i7" firstAttribute="centerY" secondItem="Wms-tB-Ami" secondAttribute="centerY" id="oYb-dB-WSI"/>
+                                                        <constraint firstItem="aah-E6-4ZP" firstAttribute="centerY" secondItem="oLT-4l-JDZ" secondAttribute="centerY" id="rOZ-zg-FEh"/>
+                                                        <constraint firstItem="FJT-hS-Dqa" firstAttribute="top" secondItem="Wms-tB-Ami" secondAttribute="top" constant="28" id="sYt-z0-eHS"/>
+                                                        <constraint firstItem="oLT-4l-JDZ" firstAttribute="leading" secondItem="fS1-Kl-7i7" secondAttribute="trailing" constant="8" id="yVy-Bd-vki"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -447,8 +487,12 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="calorieLabel" destination="Cdy-5B-GfG" id="Fys-Dr-gDR"/>
+                                            <outlet property="during" destination="oLT-4l-JDZ" id="i6c-64-OeZ"/>
+                                            <outlet property="location" destination="RcR-7s-mhg" id="QKb-SB-fdg"/>
                                             <outlet property="recordIcon" destination="fS1-Kl-7i7" id="QsE-PS-yWd"/>
                                             <outlet property="recordItemView" destination="Wms-tB-Ami" id="Qiz-i5-kfL"/>
+                                            <outlet property="sportNameLabel" destination="FJT-hS-Dqa" id="4z1-Kx-aNW"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -472,15 +516,19 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Src-R9-LSu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1037" y="678"/>
+            <point key="canvasLocation" x="1035.8778625954199" y="677.11267605633805"/>
         </scene>
     </scenes>
     <resources>
         <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="figure.run" catalog="system" width="115" height="128"/>
+        <image name="location.fill" catalog="system" width="128" height="119"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

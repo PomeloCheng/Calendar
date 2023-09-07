@@ -111,10 +111,10 @@
 				14C373EB2AA6FFDB006A8D2E /* TargetViewController.swift */,
 				141D99822AA0D3D900F15A5B /* smallRecordContentVC.swift */,
 				141D99802AA0D2DF00F15A5B /* recordTableCell.swift */,
-				141D998A2AA1ADB400F15A5B /* checkMark.png */,
 				14C373F52AA85D67006A8D2E /* setSportIcon.swift */,
 				14C373F72AA86DB5006A8D2E /* UIWindow+Extension.swift */,
 				14C373F92AA86DBE006A8D2E /* BlankCover.swift */,
+				141D998A2AA1ADB400F15A5B /* checkMark.png */,
 				14C373FB2AA8753D006A8D2E /* 1024_logo.png */,
 			);
 			path = testCVcalendar;

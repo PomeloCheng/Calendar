@@ -64,6 +64,10 @@ class smallRecordContentVC: UIViewController, UITableViewDataSource, UITableView
         cell.recordIcon.image = image
         cell.recordIcon.contentMode = .scaleAspectFit
         
+        
+        let duringtime = formatTimeInterval(workout.duration)
+        cell.during.text = duringtime
+        
         cell.recordItemView.layer.cornerRadius = 18
         
         cell.recordItemView.layer.shadowOffset = CGSize(width: 0.5, height: 0.5)
