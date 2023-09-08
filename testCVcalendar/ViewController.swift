@@ -12,7 +12,7 @@ import HealthKit
 import Lottie
 
 var configindex: Int?
-
+var appStart = false //判斷啟動App 回來時reloadData
 //var darkGreen = UIColor(red: 0, green: 138/255, blue: 163/255, alpha: 1)
 var darkGreen = UIColor(red: 0, green: 190/255, blue: 164/255, alpha: 1)
 var lightGreen = UIColor(red: 232/255, green: 246/255, blue: 245/255, alpha: 1)
@@ -26,14 +26,14 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     @IBOutlet weak var isGoalLabel: UILabel!
     @IBOutlet weak var cancelAnimation: LottieAnimationView!
     @IBOutlet weak var checkAnimation: LottieAnimationView!
-    @IBOutlet weak var activeTimeLabel: UILabel!
+    @IBOutlet weak var caroGoalLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var caroLabel: UILabel!
     @IBOutlet weak var stepLabel: UILabel!
     @IBOutlet weak var recordView: UIView!
     var isFirstTime = true //第一次的顯示todayLabel
     var isFirstRead = true //第一次進來設定月曆
-    //var leaveVC = false //判斷是否離開VC 回來時reloadData
+    
     var isNil = false //判斷資料是否為nil彈出警告 從授權那邊更改成true之後都判斷
     @IBOutlet weak var calendarView: FSCalendar!
     
@@ -63,10 +63,13 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
             
         }
         
-        
-        
-        
-        
+        healthManager.checkHealthDataAuthorizationStatus { result, error in
+            if let error = error {
+                print("checkHealthDataAuthorizationStatus fail:\(error)")
+                return
+            }
+            if result { self.isNil = true }
+        }
         
     }
     
@@ -76,7 +79,7 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         isFirstTime = false
         calendarManager.shared.selectTodayWeekdayLabel()
     }
-       
+       appStart = true
     }
     
     
@@ -149,7 +152,8 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     
     
     func updateProgress(date:Date) {
-        if date > Date() {
+        
+        if date > todayDate {
             setDefaultData()
             
         } else {
@@ -168,26 +172,26 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
             self.cancelAnimation.isHidden = true
             self.isGoalLabel.isHidden = true
             self.ringView.layer.opacity = 0.2
-            self.activeTimeLabel.text = " -- 分鐘"
+            self.caroGoalLabel.text = " -- 大卡"
             self.distanceLabel.text = " -- 公里"
             self.stepLabel.text = " -- 步"
             self.caroLabel.text = " -- 大卡"
     }
     
     func setHealthData(_ date: Date){
-        healthManager.readStepDistance(for: date) { activeTime in
-            guard let activeTime = activeTime else {
-                DispatchQueue.main.async {
-                    self.activeTimeLabel.text = " -- 分鐘"
-                }
-                return
-            }
-            
-            DispatchQueue.main.async {
-                self.activeTimeLabel.text = String(format: "%.0f 分鐘",activeTime)
-            }
-            
-        }
+//        healthManager.readStepDistance(for: date) { activeTime in
+//            guard let activeTime = activeTime else {
+//                DispatchQueue.main.async {
+//                    self.activeTimeLabel.text = " -- 分鐘"
+//                }
+//                return
+//            }
+//
+//            DispatchQueue.main.async {
+//                self.activeTimeLabel.text = String(format: "%.0f 分鐘",activeTime)
+//            }
+//
+//        }
         healthManager.readStepDistance(for: date) { distance in
             guard let distance = distance else {
                 DispatchQueue.main.async {
@@ -225,8 +229,8 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         }
         
         
-        healthManager.readCalories(for: date) { calories,progress in
-            guard let progress = progress,let calories = calories else {
+        healthManager.readCalories(for: date) { calories,progress,goal in
+            guard let progress = progress,let calories = calories,let goal = goal else {
                 
                 DispatchQueue.main.async {
                 //更新畫面的程式
@@ -235,6 +239,7 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
                     self.ringView.progress = 0
                     self.ringView.layer.opacity = 0.2
                     self.caroLabel.text = " -- 大卡"
+                    self.caroGoalLabel.text = " -- 大卡"
                 }
                 
 
@@ -245,6 +250,7 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
             DispatchQueue.main.async {
                 //更新畫面的程式
                 self.caroLabel.text = String(format: "%.0f 大卡",calories)
+                self.caroGoalLabel.text = String(format: "%.0f 大卡",goal)
                 
                 if progress >= 1.0 {
                     

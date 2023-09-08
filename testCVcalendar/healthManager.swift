@@ -5,9 +5,10 @@
 //  Created by YuCheng on 2023/8/26.
 //
 
-import Foundation
+
 import HealthKit
 import UIKit
+import CoreLocation
 
 class HealthManager {
     
@@ -35,13 +36,14 @@ class HealthManager {
                     self.activeEnergyType = activeEnergyType
                     self.stepDistance = stepDistance
                     self.activeTime = activeTime
-                typesToRead = [stepType,activeEnergyType,.activitySummaryType(),stepDistance,activeTime,.workoutType()]
+                typesToRead = [stepType,activeEnergyType,.activitySummaryType(),stepDistance,activeTime,.workoutType() , HKSeriesType.workoutRoute()
+                ]
                 } else {
                     fatalError("Invalid step count or active energy identifier")
                 }
             
         }
-    
+   
     
     
     func requestAuthorization(completion: @escaping (Bool, Error?) -> Void) {
@@ -58,7 +60,7 @@ class HealthManager {
                     completion(false,error)
                     return
                 }
-                print(status.rawValue)
+                
                 switch status {
                     
                 case .shouldRequest :
@@ -121,14 +123,14 @@ class HealthManager {
             healthStore.execute(stepQuery)
         }
         
-        func readCalories(for date: Date, completion: @escaping (Double?,Double?) -> Void) {
+        func readCalories(for date: Date, completion: @escaping (Double?,Double?,Double?) -> Void) {
             
             let predicate = setPredicate(for: date)
             
             let caloriesSummary = HKActivitySummaryQuery(predicate: predicate) { query, summaries, error in
                 if let error = error {
                     print("Error fetching active energy burned goal: \(error.localizedDescription)")
-                    completion(nil,nil)
+                    completion(nil,nil,nil)
                     return
                 }
                 
@@ -138,7 +140,7 @@ class HealthManager {
                 
                 if summaries.isEmpty {
                     print("caloriesSummary is empty")
-                    completion(nil,nil)
+                    completion(nil,nil,nil)
                 } else {
                     guard let summary = summaries.first else {
                         return
@@ -153,7 +155,7 @@ class HealthManager {
                     
                     
                     //print("日期：\(dateString), 卡路里總和：\(calories), 目標： \(goalValue)")
-                    completion(calories,progress)
+                    completion(calories,progress,goalValue)
                 }
                 
                 
@@ -205,9 +207,79 @@ class HealthManager {
             healthStore.execute(stepQuery)
         }
         
+    func searchWorkOutData(_ workout: HKWorkout, completion: @escaping (String?,Error?) -> Void) {
         
+        let workoutPredicate = HKQuery.predicateForObjects(from: workout)
+        let routeType = HKSeriesType.workoutRoute()
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
         
+        let routeQuery = HKSampleQuery(sampleType: routeType, predicate: workoutPredicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { query, samples, error in
+            if let error = error {
+                print("searchWorkOutData fail : \(error)")
+                completion(nil, error)
+                return
+            }
+            if let routes = samples as? [HKWorkoutRoute],
+               let route = routes.first {
+                self.searchRoute(route) { locationinfo, error in
+                    if let error = error {
+                        print("searchRoute fail :\(error)")
+                    }
+                    completion(locationinfo,nil)
+                }
+                    }
+                }
+        healthStore.execute(routeQuery)
+            }
+        
+    func searchRoute(_ route: HKWorkoutRoute, completion: @escaping (String?,Error?) -> Void) {
+        let routeQuery = HKWorkoutRouteQuery(route: route) { query, location, result, error in
+            if let error = error {
+                print("searchRoutelocation fail : \(error)")
+                completion(nil, error)
+                return
+            }
+            if result {
+                if let location = location?.first {
+                    self.reverseGeocodeLocation(location){ locationinfo, error in
+                        if let error = error {
+                            print("reverseGeocodeLocation fail :\(error)")
+                        }
+                        completion(locationinfo, nil)
+                    }
+                }
+            }
+        }
+        healthStore.execute(routeQuery)
+        }
+    
+    func reverseGeocodeLocation(_ location: CLLocation, completion: @escaping (String?,Error?) -> Void) {
+        let geocoder = CLGeocoder()
+        
+        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            if let error = error {
+                print("反向地理编码出错：\(error.localizedDescription)")
+                completion(nil, error)
+                return
+            }
+            
+            if let placemark = placemarks?.first {
+                if let city = placemark.locality, let area = placemark.subLocality {
+                    let locationinfo = "\(city)"
+                    completion(locationinfo, nil)
+                } else {
+                    let locationinfo = "無法確定城市和區域"
+                    completion(locationinfo, nil)
+                }
+            } else {
+                let locationinfo = "無法確定地理資訊"
+                completion(locationinfo, nil)
+            }
+        }
     }
+    
+        
+}
 
 extension UIViewController {
     

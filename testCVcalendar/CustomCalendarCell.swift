@@ -92,7 +92,7 @@ class CustomCalendarCell: FSCalendarCell {
     }
     
     func updateProgress(date:Date) {
-        if date > Date() {
+        if date > todayDate {
             self.customView.layer.opacity = 0.2
             DispatchQueue.main.async {
                 self.checkImageView.isHidden = true
@@ -108,7 +108,7 @@ class CustomCalendarCell: FSCalendarCell {
     func setHealthData(_ date:Date) {
         
         
-        healthManager.readCalories(for: date) { calories,progress in
+        healthManager.readCalories(for: date) { calories,progress,goal in
             guard let progress = progress else {
                 DispatchQueue.main.async {
                         //更新畫面的程式

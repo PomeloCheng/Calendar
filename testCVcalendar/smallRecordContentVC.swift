@@ -35,6 +35,7 @@ class smallRecordContentVC: UIViewController, UITableViewDataSource, UITableView
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         calendarManager.shared.delegateTableVC = self
+        updateDateTitle(todayDate)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +45,13 @@ class smallRecordContentVC: UIViewController, UITableViewDataSource, UITableView
         recordTable.separatorStyle = .none
         recordTable.backgroundColor = .white
        
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTodayTableView), name: Notification.Name("reloadTableView"), object: nil)
+    }
+    //MARK: reloadTable
+    @objc func reloadTodayTableView() {
+        DispatchQueue.main.async {
+            self.updateDateTitle(todayDate)
+        }
     }
     
 //MARK: tableview
@@ -59,11 +66,24 @@ class smallRecordContentVC: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "recordItemCell") as! recordTableCell
         let workout = exerciseData[indexPath.row]
+        let (image, title, caloriesBurnedString) = setCellIconandTitle(for: workout)
         
-        let image = setCellIcon(for: workout)
+        
         cell.recordIcon.image = image
         cell.recordIcon.contentMode = .scaleAspectFit
+        cell.sportNameLabel.text = title
+        cell.calorieLabel.text = caloriesBurnedString
         
+        healthManager.searchWorkOutData(workout) { locationinfo,error  in
+            if let error = error {
+                print("location fail: \(error)")
+                return
+            }
+            DispatchQueue.main.async {
+                cell.location.text = locationinfo
+            }
+            
+        }
         
         let duringtime = formatTimeInterval(workout.duration)
         cell.during.text = duringtime

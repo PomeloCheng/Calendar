@@ -12,7 +12,11 @@ import MKRingProgressView
 protocol CalendarManagerDelegate: AnyObject {
     func updateDateTitle(_ date: Date)
 }
-var todayDate = Date() // 保存今天的日期
+
+let timeZone = TimeZone.current
+let today = Date()
+let todayDate = today.addingTimeInterval(TimeInterval(timeZone.secondsFromGMT()))
+
 
 class calendarManager:NSObject {
     var FSCalendar : FSCalendar!

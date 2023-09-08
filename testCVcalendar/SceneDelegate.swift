@@ -41,11 +41,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     calendarManager.shared.resetSelectedState()
                     calendarManager.shared.selectTodayWeekdayLabel()
                 
-                
+                if appStart {
                     DispatchQueue.main.async {
                         mainVC.calendarView.reloadData()
+                        NotificationCenter.default.post(name: Notification.Name("reloadTableView"), object: nil)
                     }
-                
+                }
             } else {
                 // 转换失败的处理逻辑，例如打印错误信息
                 print("Visible view controller is not of type ViewController")
