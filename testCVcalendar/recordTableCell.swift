@@ -9,6 +9,8 @@ import UIKit
 
 class recordTableCell: UITableViewCell {
 
+    @IBOutlet weak var nameHight: NSLayoutConstraint!
+    @IBOutlet weak var locationIcon: UIImageView!
     @IBOutlet weak var calorieLabel: UILabel!
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var during: UILabel!

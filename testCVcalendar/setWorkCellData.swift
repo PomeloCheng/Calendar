@@ -8,7 +8,10 @@
 import HealthKit
 import UIKit
 
-extension smallRecordContentVC {
+class setWorkCellData {
+    
+    static let shared = setWorkCellData()
+    private init() {}
     
     //MARK: 判斷運動類型
     func setCellIconandTitle(for workout: HKWorkout) ->  (UIImage?, String, String?) {
@@ -287,7 +290,7 @@ extension smallRecordContentVC {
        
             // 获取热量消耗信息（如果有）
         if let caloriesBurned = workout.totalEnergyBurned?.doubleValue(for: .kilocalorie()) {
-            caloriesBurnedString = String(format: "消耗 %.0f 大卡", caloriesBurned)
+            caloriesBurnedString = String(format: "%.0f 大卡", caloriesBurned)
         }
         
         let image = UIImage(systemName: symbolName)
@@ -309,11 +312,11 @@ extension smallRecordContentVC {
         let hours = (Int(timeInterval) / 3600)
         
         if hours <= 0 {
-            return String(format: "總計 %02d 分 %02d 秒", minutes, seconds)
+            return String(format: "%02d 分 %02d 秒", minutes, seconds)
         } else if minutes <= 0 {
-            return String(format: "總計 %02d 秒",  seconds)
+            return String(format: "%02d 秒",  seconds)
         } else {
-            return String(format: "總計 %02d 時 %02d 分%02d 秒", hours, minutes, seconds)
+            return String(format: "%02d 時 %02d 分%02d 秒", hours, minutes, seconds)
         }
         
         

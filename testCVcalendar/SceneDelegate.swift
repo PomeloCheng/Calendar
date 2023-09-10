@@ -40,11 +40,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     
                     calendarManager.shared.resetSelectedState()
                     calendarManager.shared.selectTodayWeekdayLabel()
+                    NotificationCenter.default.post(name: Notification.Name("reloadTableView"), object: nil)
                 
                 if appStart {
                     DispatchQueue.main.async {
                         mainVC.calendarView.reloadData()
-                        NotificationCenter.default.post(name: Notification.Name("reloadTableView"), object: nil)
                     }
                 }
             } else {

@@ -16,6 +16,11 @@ class HealthManager {
     var activeEnergyType: HKQuantityType
     var stepDistance: HKQuantityType
     var activeTime: HKQuantityType
+    var heartRate: HKQuantityType
+    var cyclingDistance: HKQuantityType
+    var swimmingDistance: HKQuantityType
+    var wheelchairDistance: HKQuantityType
+    var snowSportsDistance: HKQuantityType
     
     static let shared = HealthManager()
     private let healthStore = HKHealthStore()
@@ -31,12 +36,22 @@ class HealthManager {
             if let stepType = HKObjectType.quantityType(forIdentifier: .stepCount),
                let activeEnergyType = HKObjectType.quantityType(forIdentifier: .activeEnergyBurned),
                let stepDistance = HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning),
-               let activeTime = HKObjectType.quantityType(forIdentifier: .appleMoveTime) {
+               let cyclingDistance = HKObjectType.quantityType(forIdentifier: .distanceCycling),
+               let swimmingDistance = HKObjectType.quantityType(forIdentifier: .distanceSwimming),
+               let wheelchairDistance = HKObjectType.quantityType(forIdentifier: .distanceWheelchair),
+               let snowSportsDistance = HKObjectType.quantityType(forIdentifier: .distanceDownhillSnowSports),
+               let activeTime = HKObjectType.quantityType(forIdentifier: .appleMoveTime),
+               let heartRate = HKObjectType.quantityType(forIdentifier: .heartRate) {
                     self.stepType = stepType
                     self.activeEnergyType = activeEnergyType
                     self.stepDistance = stepDistance
                     self.activeTime = activeTime
-                typesToRead = [stepType,activeEnergyType,.activitySummaryType(),stepDistance,activeTime,.workoutType() , HKSeriesType.workoutRoute()
+                    self.heartRate = heartRate
+                    self.cyclingDistance = cyclingDistance
+                    self.snowSportsDistance = snowSportsDistance
+                    self.swimmingDistance = swimmingDistance
+                    self.wheelchairDistance = wheelchairDistance
+                typesToRead = [stepType,activeEnergyType,.activitySummaryType(),stepDistance,activeTime,heartRate,.workoutType() , HKSeriesType.workoutRoute()
                 ]
                 } else {
                     fatalError("Invalid step count or active energy identifier")
@@ -85,32 +100,14 @@ class HealthManager {
             return predicvate
         }
         
-        func readWorkData(for date: Date, completion: @escaping ([HKWorkout]?) -> Void) {
-            let predicate = setPredicate(for: date)
-            let workoutType = HKObjectType.workoutType()
-            let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: true)
-            let query = HKSampleQuery(sampleType: workoutType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { (query, samples, error) in
-                
-                if let error = error {
-                    print("search workData fail: \(error)")
-                }
-                
-                if let workoutSamples = samples as? [HKWorkout] {
-                    completion(workoutSamples)
-                }
-                
-            }
-            healthStore.execute(query)
-        }
-        
-        func readStepCount(for date: Date, completion: @escaping (Double?) -> Void) {
+        func readStepCount(for date: Date, completion: @escaping (Double) -> Void) {
             let predicate = setPredicate(for: date)
             
             let stepQuery = HKStatisticsQuery(quantityType: stepType, quantitySamplePredicate: predicate, options: .cumulativeSum) { query, result, error in
                 guard let result = result, let sum = result.sumQuantity() else {
                     if let error = error {
                         print("Error fetching step count: \(error.localizedDescription)")
-                        completion(nil)
+                        completion(0)
                         return
                     }
                     return
@@ -173,14 +170,14 @@ class HealthManager {
             return query
         }
         
-        func readStepDistance(for date: Date, completion: @escaping (Double?) -> Void){
+        func readStepDistance(for date: Date, completion: @escaping (Double) -> Void){
             let predicate = setPredicate(for: date)
             
             let stepQuery = setQuery(type: stepDistance, predicate: predicate) { query, result, error in
                 guard let result = result, let sum = result.sumQuantity() else {
                     if let error = error {
-                        print("Error fetching step count: \(error.localizedDescription)")
-                        completion(nil)
+                        print("Error fetching step distance: \(error.localizedDescription)")
+                        completion(0)
                     }
                     return
                 }
@@ -207,8 +204,30 @@ class HealthManager {
             healthStore.execute(stepQuery)
         }
         
+    
+    //MARK: workoutdata
+    
+    func readWorkData(for date: Date, completion: @escaping ([HKWorkout]?) -> Void) {
+        let predicate = setPredicate(for: date)
+        let workoutType = HKObjectType.workoutType()
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: true)
+        let query = HKSampleQuery(sampleType: workoutType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: [sortDescriptor]) { (query, samples, error) in
+            
+            if let error = error {
+                print("search workData fail: \(error)")
+            }
+            
+            if let workoutSamples = samples as? [HKWorkout] {
+                completion(workoutSamples)
+            }
+            
+        }
+        healthStore.execute(query)
+    }
+    
     func searchWorkOutData(_ workout: HKWorkout, completion: @escaping (String?,Error?) -> Void) {
         
+       
         let workoutPredicate = HKQuery.predicateForObjects(from: workout)
         let routeType = HKSeriesType.workoutRoute()
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
@@ -219,6 +238,11 @@ class HealthManager {
                 completion(nil, error)
                 return
             }
+            guard let samples = samples, !samples.isEmpty else {
+                print("samples is empty")
+                completion(nil,nil)
+                return
+            }
             if let routes = samples as? [HKWorkoutRoute],
                let route = routes.first {
                 self.searchRoute(route) { locationinfo, error in
@@ -227,8 +251,9 @@ class HealthManager {
                     }
                     completion(locationinfo,nil)
                 }
-                    }
+            }
                 }
+        
         healthStore.execute(routeQuery)
             }
         
@@ -264,7 +289,7 @@ class HealthManager {
             }
             
             if let placemark = placemarks?.first {
-                if let city = placemark.locality, let area = placemark.subLocality {
+                if let city = placemark.locality {
                     let locationinfo = "\(city)"
                     completion(locationinfo, nil)
                 } else {
@@ -278,7 +303,36 @@ class HealthManager {
         }
     }
     
+    func searchHeartRate (_ workout: HKWorkout, completion: @escaping (Double?,Error?) -> Void) {
+        let predicate = HKQuery.predicateForSamples(withStart: workout.startDate, end: workout.endDate, options: .strictStartDate)
         
+        // 創建心率查詢
+        let heartRateQuery = HKSampleQuery(sampleType: heartRate, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { query, samples, error in
+            if let error = error {
+                print("無法獲取心率數據: \(error.localizedDescription)")
+                completion(nil,error)
+                      return
+            }
+            //如果為空也一種錯誤
+            guard let heartRateSamples = samples as? [HKQuantitySample] else {
+                print("無法獲取心率數據: \(error?.localizedDescription ?? "未知錯誤")")
+                completion(0,error)
+                return
+            }
+            var totalHeartRate = 0.0
+                for sample in heartRateSamples {
+                    let heartRate = sample.quantity.doubleValue(for: HKUnit(from: "count/min"))
+                    totalHeartRate += heartRate
+                }
+                
+                // 計算平均心率
+                let averageHeartRate = totalHeartRate / Double(heartRateSamples.count)
+                completion(averageHeartRate,nil)
+                      
+        }
+        healthStore.execute(heartRateQuery)
+    }
+    
 }
 
 extension UIViewController {

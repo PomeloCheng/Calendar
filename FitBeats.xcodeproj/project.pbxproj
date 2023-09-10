@@ -14,6 +14,11 @@
 		141D998B2AA1ADB400F15A5B /* checkMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 141D998A2AA1ADB400F15A5B /* checkMark.png */; };
 		1421B7B82AAAF7CF00569337 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1421B7B72AAAF7CF00569337 /* Note.swift */; };
 		1421B7BA2AAAF7DA00569337 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1421B7B92AAAF7DA00569337 /* CoreDataHelper.swift */; };
+		143E3C2C2AACD3E40083B0D4 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 143E3C2B2AACD3E40083B0D4 /* IQKeyboardManagerSwift */; };
+		143E3C322AADCDE50083B0D4 /* NoteDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 143E3C302AADCDE50083B0D4 /* NoteDataModel.xcdatamodeld */; };
+		143E3C342AADCF6B0083B0D4 /* HKWorkoutTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143E3C332AADCF6B0083B0D4 /* HKWorkoutTransformer.swift */; };
+		143E3C382AADE2040083B0D4 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143E3C372AADE2040083B0D4 /* Keyboard.swift */; };
+		143E3C3C2AADEA0B0083B0D4 /* 1024_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 143E3C3B2AADEA0B0083B0D4 /* 1024_logo.jpg */; };
 		144E57B82A9703BB00F43C1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144E57B72A9703BB00F43C1C /* AppDelegate.swift */; };
 		144E57BA2A9703BB00F43C1C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144E57B92A9703BB00F43C1C /* SceneDelegate.swift */; };
 		144E57BC2A9703BB00F43C1C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144E57BB2A9703BB00F43C1C /* ViewController.swift */; };
@@ -29,10 +34,9 @@
 		14C373E62AA6CB7C006A8D2E /* check.json in Resources */ = {isa = PBXBuildFile; fileRef = 14C373E52AA6CB7C006A8D2E /* check.json */; };
 		14C373E82AA6CFA0006A8D2E /* undone.json in Resources */ = {isa = PBXBuildFile; fileRef = 14C373E72AA6CFA0006A8D2E /* undone.json */; };
 		14C373EC2AA6FFDB006A8D2E /* TargetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C373EB2AA6FFDB006A8D2E /* TargetViewController.swift */; };
-		14C373F62AA85D67006A8D2E /* setSportIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C373F52AA85D67006A8D2E /* setSportIcon.swift */; };
+		14C373F62AA85D67006A8D2E /* setWorkCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C373F52AA85D67006A8D2E /* setWorkCellData.swift */; };
 		14C373F82AA86DB5006A8D2E /* UIWindow+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C373F72AA86DB5006A8D2E /* UIWindow+Extension.swift */; };
 		14C373FA2AA86DBE006A8D2E /* BlankCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C373F92AA86DBE006A8D2E /* BlankCover.swift */; };
-		14C373FC2AA8753D006A8D2E /* 1024_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 14C373FB2AA8753D006A8D2E /* 1024_logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +47,10 @@
 		141D998A2AA1ADB400F15A5B /* checkMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkMark.png; sourceTree = "<group>"; };
 		1421B7B72AAAF7CF00569337 /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		1421B7B92AAAF7DA00569337 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		143E3C312AADCDE50083B0D4 /* NoteDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NoteDataModel.xcdatamodel; sourceTree = "<group>"; };
+		143E3C332AADCF6B0083B0D4 /* HKWorkoutTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKWorkoutTransformer.swift; sourceTree = "<group>"; };
+		143E3C372AADE2040083B0D4 /* Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
+		143E3C3B2AADEA0B0083B0D4 /* 1024_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1024_logo.jpg; sourceTree = "<group>"; };
 		144E57B42A9703BB00F43C1C /* FitBeats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FitBeats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		144E57B72A9703BB00F43C1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		144E57B92A9703BB00F43C1C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,10 +66,9 @@
 		14C373E52AA6CB7C006A8D2E /* check.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = check.json; sourceTree = "<group>"; };
 		14C373E72AA6CFA0006A8D2E /* undone.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = undone.json; sourceTree = "<group>"; };
 		14C373EB2AA6FFDB006A8D2E /* TargetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetViewController.swift; sourceTree = "<group>"; };
-		14C373F52AA85D67006A8D2E /* setSportIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setSportIcon.swift; sourceTree = "<group>"; };
+		14C373F52AA85D67006A8D2E /* setWorkCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setWorkCellData.swift; sourceTree = "<group>"; };
 		14C373F72AA86DB5006A8D2E /* UIWindow+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extension.swift"; sourceTree = "<group>"; };
 		14C373F92AA86DBE006A8D2E /* BlankCover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlankCover.swift; sourceTree = "<group>"; };
-		14C373FB2AA8753D006A8D2E /* 1024_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1024_logo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +77,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				144E58152A9DE51400F43C1C /* MKRingProgressView in Frameworks */,
+				143E3C2C2AACD3E40083B0D4 /* IQKeyboardManagerSwift in Frameworks */,
 				144E57D02A97087600F43C1C /* FSCalendar in Frameworks */,
 				14C373E02AA60F5B006A8D2E /* Lottie in Frameworks */,
 			);
@@ -107,21 +115,24 @@
 				14C373E72AA6CFA0006A8D2E /* undone.json */,
 				144E57C22A9703BD00F43C1C /* LaunchScreen.storyboard */,
 				144E57D12A98B4BB00F43C1C /* calendarManager.swift */,
+				143E3C3B2AADEA0B0083B0D4 /* 1024_logo.jpg */,
 				144E57C52A9703BD00F43C1C /* Info.plist */,
 				144E58112A9DE41300F43C1C /* CustomCalendarCell.swift */,
 				144E57D52A99F3A000F43C1C /* FSCViewController.swift */,
 				141D99842AA1828E00F15A5B /* setBigCalendar.swift */,
 				141D99862AA1949B00F15A5B /* healthManager.swift */,
-				14C373EB2AA6FFDB006A8D2E /* TargetViewController.swift */,
 				141D99822AA0D3D900F15A5B /* smallRecordContentVC.swift */,
 				141D99802AA0D2DF00F15A5B /* recordTableCell.swift */,
-				14C373F52AA85D67006A8D2E /* setSportIcon.swift */,
+				14C373F52AA85D67006A8D2E /* setWorkCellData.swift */,
 				14C373F72AA86DB5006A8D2E /* UIWindow+Extension.swift */,
+				14C373EB2AA6FFDB006A8D2E /* TargetViewController.swift */,
 				14C373F92AA86DBE006A8D2E /* BlankCover.swift */,
 				141D998A2AA1ADB400F15A5B /* checkMark.png */,
-				14C373FB2AA8753D006A8D2E /* 1024_logo.png */,
+				143E3C332AADCF6B0083B0D4 /* HKWorkoutTransformer.swift */,
+				143E3C302AADCDE50083B0D4 /* NoteDataModel.xcdatamodeld */,
 				1421B7B72AAAF7CF00569337 /* Note.swift */,
 				1421B7B92AAAF7DA00569337 /* CoreDataHelper.swift */,
+				143E3C372AADE2040083B0D4 /* Keyboard.swift */,
 			);
 			path = testCVcalendar;
 			sourceTree = "<group>";
@@ -146,6 +157,7 @@
 				144E57CF2A97087600F43C1C /* FSCalendar */,
 				144E58142A9DE51400F43C1C /* MKRingProgressView */,
 				14C373DF2AA60F5B006A8D2E /* Lottie */,
+				143E3C2B2AACD3E40083B0D4 /* IQKeyboardManagerSwift */,
 			);
 			productName = testCVcalendar;
 			productReference = 144E57B42A9703BB00F43C1C /* FitBeats.app */;
@@ -179,6 +191,7 @@
 				144E57CE2A97087600F43C1C /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				144E58132A9DE51400F43C1C /* XCRemoteSwiftPackageReference "MKRingProgressView" */,
 				14C373DE2AA60F5B006A8D2E /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				143E3C2A2AACD3E40083B0D4 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 144E57B52A9703BB00F43C1C /* Products */;
 			projectDirPath = "";
@@ -196,7 +209,7 @@
 			files = (
 				14C373E62AA6CB7C006A8D2E /* check.json in Resources */,
 				144E57C42A9703BD00F43C1C /* LaunchScreen.storyboard in Resources */,
-				14C373FC2AA8753D006A8D2E /* 1024_logo.png in Resources */,
+				143E3C3C2AADEA0B0083B0D4 /* 1024_logo.jpg in Resources */,
 				141D998B2AA1ADB400F15A5B /* checkMark.png in Resources */,
 				144E57C12A9703BD00F43C1C /* Assets.xcassets in Resources */,
 				14C373E82AA6CFA0006A8D2E /* undone.json in Resources */,
@@ -213,17 +226,20 @@
 			files = (
 				144E57BC2A9703BB00F43C1C /* ViewController.swift in Sources */,
 				141D99832AA0D3D900F15A5B /* smallRecordContentVC.swift in Sources */,
+				143E3C342AADCF6B0083B0D4 /* HKWorkoutTransformer.swift in Sources */,
 				1421B7BA2AAAF7DA00569337 /* CoreDataHelper.swift in Sources */,
-				14C373F62AA85D67006A8D2E /* setSportIcon.swift in Sources */,
+				14C373F62AA85D67006A8D2E /* setWorkCellData.swift in Sources */,
 				144E57D22A98B4BB00F43C1C /* calendarManager.swift in Sources */,
 				14C373FA2AA86DBE006A8D2E /* BlankCover.swift in Sources */,
 				1421B7B82AAAF7CF00569337 /* Note.swift in Sources */,
 				141D99812AA0D2DF00F15A5B /* recordTableCell.swift in Sources */,
+				143E3C382AADE2040083B0D4 /* Keyboard.swift in Sources */,
 				144E57B82A9703BB00F43C1C /* AppDelegate.swift in Sources */,
 				141D99852AA1828E00F15A5B /* setBigCalendar.swift in Sources */,
 				144E57D62A99F3A000F43C1C /* FSCViewController.swift in Sources */,
 				144E58122A9DE41300F43C1C /* CustomCalendarCell.swift in Sources */,
 				14C373EC2AA6FFDB006A8D2E /* TargetViewController.swift in Sources */,
+				143E3C322AADCDE50083B0D4 /* NoteDataModel.xcdatamodeld in Sources */,
 				144E57BA2A9703BB00F43C1C /* SceneDelegate.swift in Sources */,
 				141D99872AA1949C00F15A5B /* healthManager.swift in Sources */,
 				14C373F82AA86DB5006A8D2E /* UIWindow+Extension.swift in Sources */,
@@ -454,6 +470,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		143E3C2A2AACD3E40083B0D4 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 		144E57CE2A97087600F43C1C /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WenchaoD/FSCalendar";
@@ -481,6 +505,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		143E3C2B2AACD3E40083B0D4 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 143E3C2A2AACD3E40083B0D4 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
 		144E57CF2A97087600F43C1C /* FSCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 144E57CE2A97087600F43C1C /* XCRemoteSwiftPackageReference "FSCalendar" */;
@@ -497,6 +526,19 @@
 			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		143E3C302AADCDE50083B0D4 /* NoteDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				143E3C312AADCDE50083B0D4 /* NoteDataModel.xcdatamodel */,
+			);
+			currentVersion = 143E3C312AADCDE50083B0D4 /* NoteDataModel.xcdatamodel */;
+			path = NoteDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 144E57AC2A9703BB00F43C1C /* Project object */;
 }

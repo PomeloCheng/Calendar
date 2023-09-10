@@ -13,10 +13,7 @@ protocol CalendarManagerDelegate: AnyObject {
     func updateDateTitle(_ date: Date)
 }
 
-let timeZone = TimeZone.current
-let today = Date()
-let todayDate = today.addingTimeInterval(TimeInterval(timeZone.secondsFromGMT()))
-
+let todayDate = Date()
 
 class calendarManager:NSObject {
     var FSCalendar : FSCalendar!
@@ -33,8 +30,11 @@ class calendarManager:NSObject {
     private override init() {}
     
     
+    
     func setConfig(){
+        
         FSCalendar.locale = .init(identifier: "zh-tw")
+        
         FSCalendar.appearance.caseOptions = .weekdayUsesSingleUpperCase
         
         FSCalendar.firstWeekday = 2
@@ -104,8 +104,8 @@ class calendarManager:NSObject {
         }
     
     func calculateSelectedDate(weekdayIndex: Int) -> Date {
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone(identifier: "GMT")! // 設定時區為 GMT
+        let calendar = Calendar.current
+        //calendar.timeZone = TimeZone.init(identifier: "Asia/Taipei")!
         let currentDate = FSCalendar.currentPage
         let currentWeekday = calendar.component(.weekday, from: currentDate)
         let daysToAdd = weekdayIndex - currentWeekday + 2
@@ -154,6 +154,7 @@ class calendarManager:NSObject {
     
     func dateToWeekday(_ date: Date) {
         var calendar = Calendar.current
+        //calendar.timeZone = TimeZone.init(identifier: "Asia/Taipei")!
         calendar.firstWeekday = 2
         let weekdayComponents = calendar.component(.weekday, from: date) - 2
         let weekdayLabels = FSCalendar.calendarWeekdayView.weekdayLabels
@@ -203,6 +204,8 @@ class calendarManager:NSObject {
         delegateTableVC?.updateDateTitle(date)
         dateToWeekday(date)
     }
+    
+    
    
 
 }
@@ -210,8 +213,12 @@ class calendarManager:NSObject {
 extension Date {
     func addDays(_ days: Int) -> Date {
         let calendar = Calendar.current
+        //calendar.timeZone = TimeZone.init(identifier: "Asia/Taipei")!
         return calendar.date(byAdding: .day, value: days, to: self) ?? self
     }
+    
+    
+    
 }
 
 extension calendarManager: FSCalendarDataSource, FSCalendarDelegate {

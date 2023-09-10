@@ -7,6 +7,7 @@
 
 import UIKit
 import HealthKit
+import IQKeyboardManagerSwift
 
 
 @main
@@ -16,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        //IQKeyboardManager.shared.enable = true
+        ValueTransformer.setValueTransformer(HKWorkoutTransformer(), forName: NSValueTransformerName(rawValue: "HKWorkoutTransformer"))
         healthManager.requestAuthorization { success, error in
             if let error = error {
                 print("HealthKit authorization error: \(error.localizedDescription)")

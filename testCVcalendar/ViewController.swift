@@ -11,6 +11,7 @@ import MKRingProgressView
 import HealthKit
 import Lottie
 
+
 var configindex: Int?
 var appStart = false //判斷啟動App 回來時reloadData
 //var darkGreen = UIColor(red: 0, green: 138/255, blue: 163/255, alpha: 1)
@@ -47,6 +48,7 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     @IBOutlet weak var healthTitleLabel: UILabel!
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         if isFirstRead {
             calendarManager.shared.FSCalendar = calendarView
             calendarViewHeight.constant = 200
@@ -116,6 +118,10 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleAuthorizationSuccess), name: Notification.Name("HealthKitAuthorizationSuccess"), object: nil)
+        
+
+
+
 //        if leaveVC {
 //            calendarView.reloadData()
 //            leaveVC = false
@@ -128,9 +134,12 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     }
     
     func updateDateTitle(_ date: Date) {
+        
         let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "Y 年 M 月 d 日"
+        dateFormatter.dateFormat = "yyyy 年 MM 月 dd 日"
+        //dateFormatter.timeZone = TimeZone.current // 使用本地时区
             let dateString = dateFormatter.string(from: date)
+        
         navigationItem.title = dateString
         updateProgress(date: date)
         selectData = date
@@ -154,9 +163,11 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
     func updateProgress(date:Date) {
         
         if date > todayDate {
+           
             setDefaultData()
             
         } else {
+            
             self.ringView.layer.opacity = 1.0
             setHealthData(date)
         }
@@ -193,12 +204,6 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
 //
 //        }
         healthManager.readStepDistance(for: date) { distance in
-            guard let distance = distance else {
-                DispatchQueue.main.async {
-                    self.distanceLabel.text = " -- 公里"
-                }
-                return
-            }
             
             DispatchQueue.main.async {
                 self.distanceLabel.text = String(format: "%.2f 公里",distance)
@@ -207,19 +212,7 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
         }
         
         healthManager.readStepCount(for: date) { step in
-            guard let step = step else {
-                DispatchQueue.main.async {
-                    self.stepLabel.text = " -- 步"
-                    self.checkAnimation.isHidden = true
-                    self.cancelAnimation.isHidden = true
-                    self.isGoalLabel.isHidden = true
-                    self.ringView.layer.opacity = 0.2
-                    if self.isNil {
-                        self.showHealthKitAuthorizationAlert()
-                    }
-                }
-                return
-            }
+            
             self.selectStep = step
             
             DispatchQueue.main.async {
@@ -240,6 +233,9 @@ class ViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate
                     self.ringView.layer.opacity = 0.2
                     self.caroLabel.text = " -- 大卡"
                     self.caroGoalLabel.text = " -- 大卡"
+                    if self.isNil {
+                        self.showHealthKitAuthorizationAlert()
+                    }
                 }
                 
 

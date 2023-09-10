@@ -15,7 +15,7 @@ class Note: NSManagedObject {
     @NSManaged var text : String
     @NSManaged var noteID : String
     @NSManaged var worOut : HKWorkout
-    @NSManaged var date : Date
+    @NSManaged var date : String
     
     override func awakeFromInsert() {
         noteID = UUID().uuidString
