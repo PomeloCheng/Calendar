@@ -14,7 +14,6 @@
 		141D998B2AA1ADB400F15A5B /* checkMark.png in Resources */ = {isa = PBXBuildFile; fileRef = 141D998A2AA1ADB400F15A5B /* checkMark.png */; };
 		1421B7B82AAAF7CF00569337 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1421B7B72AAAF7CF00569337 /* Note.swift */; };
 		1421B7BA2AAAF7DA00569337 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1421B7B92AAAF7DA00569337 /* CoreDataHelper.swift */; };
-		143E3C2C2AACD3E40083B0D4 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 143E3C2B2AACD3E40083B0D4 /* IQKeyboardManagerSwift */; };
 		143E3C322AADCDE50083B0D4 /* NoteDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 143E3C302AADCDE50083B0D4 /* NoteDataModel.xcdatamodeld */; };
 		143E3C342AADCF6B0083B0D4 /* HKWorkoutTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143E3C332AADCF6B0083B0D4 /* HKWorkoutTransformer.swift */; };
 		143E3C382AADE2040083B0D4 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143E3C372AADE2040083B0D4 /* Keyboard.swift */; };
@@ -77,7 +76,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				144E58152A9DE51400F43C1C /* MKRingProgressView in Frameworks */,
-				143E3C2C2AACD3E40083B0D4 /* IQKeyboardManagerSwift in Frameworks */,
 				144E57D02A97087600F43C1C /* FSCalendar in Frameworks */,
 				14C373E02AA60F5B006A8D2E /* Lottie in Frameworks */,
 			);
@@ -157,7 +155,6 @@
 				144E57CF2A97087600F43C1C /* FSCalendar */,
 				144E58142A9DE51400F43C1C /* MKRingProgressView */,
 				14C373DF2AA60F5B006A8D2E /* Lottie */,
-				143E3C2B2AACD3E40083B0D4 /* IQKeyboardManagerSwift */,
 			);
 			productName = testCVcalendar;
 			productReference = 144E57B42A9703BB00F43C1C /* FitBeats.app */;
@@ -191,7 +188,6 @@
 				144E57CE2A97087600F43C1C /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				144E58132A9DE51400F43C1C /* XCRemoteSwiftPackageReference "MKRingProgressView" */,
 				14C373DE2AA60F5B006A8D2E /* XCRemoteSwiftPackageReference "lottie-ios" */,
-				143E3C2A2AACD3E40083B0D4 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 144E57B52A9703BB00F43C1C /* Products */;
 			projectDirPath = "";
@@ -393,24 +389,27 @@
 				DEVELOPMENT_TEAM = 6A82K36Y4N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = testCVcalendar/Info.plist;
-				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "將使用您的健康紀錄做整合顯示";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "將使用您的健康紀錄做整合顯示";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "將使用您的健康紀錄做整合顯示";
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "允许應用程式訪問您的健康數據，以整合顯示您的步數和心率信息等，同時您可以在其紀錄上使用備註功能，用來撰寫特殊的紀錄。";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "允许應用程式訪問您的健康數據，以與其他應用程式或服務共享，並提供整合。";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "允许應用程式訪問您的健康數據，以更新您的健康記錄，並更新您的備註。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pomelo.testFitBeatscalendar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pomelo.FitBeats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -425,24 +424,27 @@
 				DEVELOPMENT_TEAM = 6A82K36Y4N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = testCVcalendar/Info.plist;
-				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "將使用您的健康紀錄做整合顯示";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "將使用您的健康紀錄做整合顯示";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "將使用您的健康紀錄做整合顯示";
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "允许應用程式訪問您的健康數據，以整合顯示您的步數和心率信息等，同時您可以在其紀錄上使用備註功能，用來撰寫特殊的紀錄。";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "允许應用程式訪問您的健康數據，以與其他應用程式或服務共享，並提供整合。";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "允许應用程式訪問您的健康數據，以更新您的健康記錄，並更新您的備註。";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pomelo.testFitBeatscalendar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pomelo.FitBeats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -470,14 +472,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		143E3C2A2AACD3E40083B0D4 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.0;
-			};
-		};
 		144E57CE2A97087600F43C1C /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WenchaoD/FSCalendar";
@@ -505,11 +499,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		143E3C2B2AACD3E40083B0D4 /* IQKeyboardManagerSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 143E3C2A2AACD3E40083B0D4 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
-			productName = IQKeyboardManagerSwift;
-		};
 		144E57CF2A97087600F43C1C /* FSCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 144E57CE2A97087600F43C1C /* XCRemoteSwiftPackageReference "FSCalendar" */;

@@ -34,6 +34,17 @@ class TargetViewController: UIViewController, UITextViewDelegate {
     
     var note:[Note]=[]
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //如果沒按儲存直接返回
+        if textField.text != "請輸入文字" && !textField.text.isEmpty {
+            CoreDataHelper.shared.saveContext()
+            self.textField.resignFirstResponder()
+            self.textField.isEditable = false
+            self.saveBtn.isHidden = true
+            self.textField.textColor = UIColor.lightGray
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         let dateFormatter = DateFormatter()
